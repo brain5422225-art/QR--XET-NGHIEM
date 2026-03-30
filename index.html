@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hướng dẫn xét nghiệm</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f0f8ff;
+    }
+
+    header {
+      background: #0077b6;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .tabs {
+      display: flex;
+      overflow-x: auto;
+      background: #caf0f8;
+    }
+
+    .tab {
+      flex: 1;
+      padding: 12px;
+      text-align: center;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .tab.active {
+      background: #0077b6;
+      color: white;
+    }
+
+    .content {
+      padding: 15px;
+      font-size: 18px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 10px;
+      padding: 15px;
+      margin-bottom: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    canvas {
+      width: 100%;
+      height: 200px;
+      display: block;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+📋 HƯỚNG DẪN TRƯỚC XÉT NGHIỆM
+</header>
+
+<div class="tabs">
+  <div class="tab active" onclick="showTab(0)">🩸 Máu</div>
+  <div class="tab" onclick="showTab(1)">🚽 Nước tiểu</div>
+  <div class="tab" onclick="showTab(2)">💩 Phân</div>
+  <div class="tab" onclick="showTab(3)">📌 Chung</div>
+</div>
+
+<div class="content" id="content"></div>
+
+<script>
+const data = [
+  {
+    title: "Xét nghiệm máu 🩸",
+    content: `
+      <div class="card">🥗 Không ăn trước 8-12 giờ</div>
+      <div class="card">💧 Có thể uống nước lọc</div>
+      <div class="card">😴 Ngủ đủ giấc</div>
+      <div class="card">👉 Ví dụ: Sáng đi xét nghiệm thì tối hôm trước không ăn</div>
+    `
+  },
+  {
+    title: "Nước tiểu 🚽",
+    content: `
+      <div class="card">🧼 Rửa sạch trước khi lấy</div>
+      <div class="card">💧 Lấy giữa dòng (bỏ phần đầu)</div>
+      <div class="card">🧴 Dùng lọ sạch</div>
+    `
+  },
+  {
+    title: "Phân 💩",
+    content: `
+      <div class="card">📦 Lấy lượng nhỏ</div>
+      <div class="card">❌ Không lẫn nước</div>
+      <div class="card">🚫 Không lấy từ bồn cầu</div>
+    `
+  },
+  {
+    title: "Hướng dẫn chung 📌",
+    content: `
+      <div class="card">📱 Đọc kỹ trước khi làm</div>
+      <div class="card">❓ Không hiểu thì hỏi bác sĩ</div>
+      <div class="card">😊 Làm đúng để không phải làm lại</div>
+    `
+  }
+];
+
+function showTab(index) {
+  const tabs = document.querySelectorAll('.tab');
+  tabs.forEach(tab => tab.classList.remove('active'));
+  tabs[index].classList.add('active');
+
+  document.getElementById("content").innerHTML = `
+    <h2>${data[index].title}</h2>
+    ${data[index].content}
+    <canvas id="canvas"></canvas>
+  `;
+
+  render3D();
+}
+
+// Simple 3D animation
+function render3D() {
+  const canvas = document.getElementById("canvas");
+  const ctx = canvas.getContext("2d");
+
+  let x = 50;
+
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    ctx.fillStyle = "#0077b6";
+    ctx.fillRect(x, 50, 50, 50);
+
+    x += 1;
+    if (x > canvas.width) x = 0;
+
+    requestAnimationFrame(draw);
+  }
+
+  draw();
+}
+
+// load default tab
+showTab(0);
+
+</script>
+
+</body>
+</html>
