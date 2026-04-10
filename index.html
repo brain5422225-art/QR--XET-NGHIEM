@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hướng Dẫn Lấy Mẫu Xét Nghiệm</title>
     <style>
-        /* THIẾT LẬP NỀN Y TẾ HIỆN ĐẠI */
+        /* MÀU SẮC Y TẾ HIỆN ĐẠI & NHẸ MÁY */
         :root {
             --primary-teal: #2c7a7b;
             --active-blue: #3182ce;
             --text-main: #2d3748;
             --text-red: #e53e3e;
-            --glass-bg: rgba(255, 255, 255, 0.85);
+            --bg-solid: #f7fafc; /* Nền dự phòng siêu nhẹ */
         }
 
         body {
@@ -19,155 +19,136 @@
             margin: 0;
             padding: 0;
             min-height: 100vh;
-            /* Đã thay đổi đường dẫn trỏ thẳng vào file bg.jpg trong cùng thư mục */
-            background: url('./bg.jpg') no-repeat center center fixed;
+            background-color: var(--bg-solid);
+            /* Nếu ảnh bg.jpg lỗi, nó sẽ hiển thị màu nền nhạt an toàn */
+            background-image: url('./bg.jpg'); 
+            background-position: center;
+            background-repeat: no-repeat;
             background-size: cover;
             display: flex;
             flex-direction: column;
             color: var(--text-main);
         }
 
-        /* TIÊU ĐỀ TRÊN CÙNG */
         header {
             width: 100%;
-            padding: 25px 0;
+            padding: 20px 0;
             text-align: center;
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
 
         header h1 {
             margin: 0;
-            font-size: 2.2rem;
+            font-size: 2rem;
             color: var(--primary-teal);
             text-transform: uppercase;
-            letter-spacing: 2px;
             font-weight: 800;
         }
 
-        /* BỐ CỤC CHÍNH */
         .main-wrapper {
             display: flex;
-            max-width: 1200px;
+            max-width: 1100px;
             width: 95%;
             margin: 30px auto;
-            gap: 25px;
+            gap: 20px;
             flex-grow: 1;
         }
 
-        /* SIDEBAR BÊN TRÁI */
         .sidebar {
-            flex: 0 0 320px;
+            flex: 0 0 300px;
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 15px;
         }
 
-        /* NÚT BẤM NỔI KHỐI 3D (NEUMORPHISM) */
         .nav-button {
-            background: rgba(255, 255, 255, 0.9);
-            border: none;
-            border-radius: 20px;
-            padding: 15px 20px;
+            background: #ffffff;
+            border: 2px solid transparent;
+            border-radius: 15px;
+            padding: 15px;
             display: flex;
             align-items: center;
             gap: 15px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.2s;
             text-align: left;
-            font-size: 1.15rem;
+            font-size: 1.1rem;
             font-weight: 700;
             color: #4a5568;
-            box-shadow: 8px 8px 16px rgba(0,0,0,0.1), 
-                       -8px -8px 16px rgba(255,255,255,0.8);
-            backdrop-filter: blur(5px);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
         }
 
+        /* Xử lý ảnh lỗi: Nếu ảnh ko load được sẽ có viền để nhận biết */
         .nav-button img {
-            width: 55px;
-            height: 55px;
-            border-radius: 12px;
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
             object-fit: cover;
-            border: 2px solid #edf2f7;
+            background-color: #edf2f7;
+            border: 1px solid #e2e8f0;
         }
 
         .nav-button:hover {
-            transform: scale(1.02);
-            color: var(--active-blue);
+            border-color: #bee3f8;
+            transform: translateY(-2px);
         }
 
-        /* Trạng thái nút khi được chọn (Lõm xuống) */
         .nav-button.active {
-            box-shadow: inset 6px 6px 12px rgba(0,0,0,0.1), 
-                        inset -6px -6px 12px rgba(255,255,255,0.8);
+            background: #ebf8ff;
+            border-color: var(--active-blue);
             color: var(--active-blue);
-            transform: scale(0.98);
-            background: rgba(237, 242, 247, 0.95);
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
         }
 
-        /* KHU VỰC HIỂN THỊ NỘI DUNG (GLASSMORPHISM) */
+        /* KHU VỰC NỘI DUNG MƯỢT MÀ */
         .content-box {
             flex: 1;
-            background: var(--glass-bg);
-            backdrop-filter: blur(15px);
-            border-radius: 30px;
-            padding: 40px;
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-            animation: slideIn 0.5s ease;
+            background: rgba(255, 255, 255, 0.95); /* Bỏ blur gây giật, dùng nền trắng mờ */
+            border-radius: 20px;
+            padding: 35px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            animation: fadeIn 0.3s ease-out;
         }
 
         .step-card {
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 2px dashed #cbd5e0;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px dashed #e2e8f0;
         }
 
-        .step-card:last-child { border: none; padding-bottom: 0; margin-bottom: 0; }
+        .step-card:last-child { border: none; margin-bottom: 0; padding-bottom: 0; }
 
         .step-title {
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             color: var(--primary-teal);
-            margin-bottom: 12px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            margin-bottom: 8px;
             font-weight: 700;
         }
 
         .step-content {
-            font-size: 1.25rem;
-            line-height: 1.8;
-            color: #2d3748;
+            font-size: 1.15rem;
+            line-height: 1.6;
         }
 
-        /* CHỮ NỔI BẬT PHÙ HỢP NỀN */
         .highlight {
             color: var(--text-red);
-            font-weight: 800;
+            font-weight: bold;
             background: #fff5f5;
-            padding: 2px 8px;
-            border-radius: 6px;
-            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+            padding: 2px 6px;
+            border-radius: 4px;
         }
 
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateX(30px); }
-            to { opacity: 1; transform: translateX(0); }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        /* MOBILE RESPONSIVE */
-        @media (max-width: 900px) {
+        @media (max-width: 800px) {
             .main-wrapper { flex-direction: column; }
             .sidebar { flex: none; width: 100%; flex-direction: row; flex-wrap: wrap; }
-            .nav-button { flex: 1 1 45%; justify-content: center; padding: 15px; }
-            .nav-button span { font-size: 1rem; }
-            .content-box { padding: 25px; }
-        }
-        @media (max-width: 500px) {
-            .nav-button { flex: 1 1 100%; }
+            .nav-button { flex: 1 1 45%; padding: 12px; }
+            .content-box { padding: 20px; }
         }
     </style>
 </head>
@@ -183,7 +164,6 @@
     </div>
 
     <script>
-        // DỮ LIỆU NỘI DUNG ĐÃ GẮN ĐƯỜNG DẪN ẢNH TẠI THƯ MỤC LOCAL
         const appData = {
             "nuoc-tieu": {
                 title: "Nước Tiểu Thường",
@@ -231,7 +211,10 @@
                 const item = appData[key];
                 const btn = document.createElement('button');
                 btn.className = `nav-button ${index === 0 ? 'active' : ''}`;
-                btn.innerHTML = `<img src="${item.image}" alt="icon" onerror="this.src='https://via.placeholder.com/55?text=Ảnh+Lỗi'"> <span>${item.title}</span>`;
+                
+                // Nếu ảnh lỗi, sẽ hiển thị một chữ cái hoặc màu nền thay vì hình vỡ
+                btn.innerHTML = `<img src="${item.image}" alt="icon" onerror="this.style.display='none'"> <span>${item.title}</span>`;
+                
                 btn.onclick = () => {
                     document.querySelectorAll('.nav-button').forEach(b => b.classList.remove('active'));
                     btn.classList.add('active');
@@ -245,12 +228,11 @@
         function showContent(key) {
             const data = appData[key];
             
-            // Khởi động lại animation mỗi khi đổi tab
             content.style.animation = 'none';
             content.offsetHeight; 
             content.style.animation = null;
 
-            let html = `<h2 style="color:var(--primary-teal); margin-top:0; font-size:2rem; border-bottom: 2px solid #e2e8f0; padding-bottom: 15px; margin-bottom: 25px;">${data.title}</h2>`;
+            let html = `<h2 style="color:var(--primary-teal); margin-top:0; font-size:1.8rem; border-bottom: 2px solid #e2e8f0; padding-bottom: 10px; margin-bottom: 20px;">${data.title}</h2>`;
             data.sections.forEach(s => {
                 html += `
                     <div class="step-card">
@@ -262,7 +244,6 @@
             content.innerHTML = html;
         }
 
-        // Khởi chạy ứng dụng
         initApp();
     </script>
 </body>
