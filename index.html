@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hướng Dẫn Lấy Mẫu</title>
+    <title>Hướng Dẫn Lấy Mẫu Xét Nghiệm</title>
     <style>
         /* THIẾT LẬP NỀN Y TẾ HIỆN ĐẠI */
         :root {
@@ -19,8 +19,8 @@
             margin: 0;
             padding: 0;
             min-height: 100vh;
-            /* Thay URL hình nền GitHub của bạn vào đây */
-            background: url('https://raw.githubusercontent.com/username/repo/main/background.jpg') no-repeat center center fixed;
+            /* Đã thay đổi đường dẫn trỏ thẳng vào file bg.jpg trong cùng thư mục */
+            background: url('./bg.jpg') no-repeat center center fixed;
             background-size: cover;
             display: flex;
             flex-direction: column;
@@ -35,6 +35,7 @@
             background: rgba(255, 255, 255, 0.2);
             backdrop-filter: blur(10px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
         }
 
         header h1 {
@@ -66,28 +67,30 @@
 
         /* NÚT BẤM NỔI KHỐI 3D (NEUMORPHISM) */
         .nav-button {
-            background: #edf2f7;
+            background: rgba(255, 255, 255, 0.9);
             border: none;
             border-radius: 20px;
-            padding: 20px;
+            padding: 15px 20px;
             display: flex;
             align-items: center;
             gap: 15px;
             cursor: pointer;
             transition: all 0.3s ease;
             text-align: left;
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             font-weight: 700;
             color: #4a5568;
-            box-shadow: 8px 8px 16px #cbd5e0, 
-                       -8px -8px 16px #ffffff;
+            box-shadow: 8px 8px 16px rgba(0,0,0,0.1), 
+                       -8px -8px 16px rgba(255,255,255,0.8);
+            backdrop-filter: blur(5px);
         }
 
         .nav-button img {
-            width: 50px;
-            height: 50px;
-            border-radius: 10px;
+            width: 55px;
+            height: 55px;
+            border-radius: 12px;
             object-fit: cover;
+            border: 2px solid #edf2f7;
         }
 
         .nav-button:hover {
@@ -97,10 +100,11 @@
 
         /* Trạng thái nút khi được chọn (Lõm xuống) */
         .nav-button.active {
-            box-shadow: inset 6px 6px 12px #cbd5e0, 
-                        inset -6px -6px 12px #ffffff;
+            box-shadow: inset 6px 6px 12px rgba(0,0,0,0.1), 
+                        inset -6px -6px 12px rgba(255,255,255,0.8);
             color: var(--active-blue);
             transform: scale(0.98);
+            background: rgba(237, 242, 247, 0.95);
         }
 
         /* KHU VỰC HIỂN THỊ NỘI DUNG (GLASSMORPHISM) */
@@ -121,7 +125,7 @@
             border-bottom: 2px dashed #cbd5e0;
         }
 
-        .step-card:last-child { border: none; }
+        .step-card:last-child { border: none; padding-bottom: 0; margin-bottom: 0; }
 
         .step-title {
             font-size: 1.4rem;
@@ -130,10 +134,11 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            font-weight: 700;
         }
 
         .step-content {
-            font-size: 1.2rem;
+            font-size: 1.25rem;
             line-height: 1.8;
             color: #2d3748;
         }
@@ -145,6 +150,7 @@
             background: #fff5f5;
             padding: 2px 8px;
             border-radius: 6px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
         }
 
         @keyframes slideIn {
@@ -156,7 +162,12 @@
         @media (max-width: 900px) {
             .main-wrapper { flex-direction: column; }
             .sidebar { flex: none; width: 100%; flex-direction: row; flex-wrap: wrap; }
-            .nav-button { flex: 1 1 45%; justify-content: center; }
+            .nav-button { flex: 1 1 45%; justify-content: center; padding: 15px; }
+            .nav-button span { font-size: 1rem; }
+            .content-box { padding: 25px; }
+        }
+        @media (max-width: 500px) {
+            .nav-button { flex: 1 1 100%; }
         }
     </style>
 </head>
@@ -168,17 +179,15 @@
 
     <div class="main-wrapper">
         <div class="sidebar" id="sidebar-nav"></div>
-
         <div class="content-box" id="main-content"></div>
     </div>
 
     <script>
-        // DỮ LIỆU NỘI DUNG SẠCH VÀ CHI TIẾT
-        // Lưu ý: Hãy thay link ảnh GitHub của bạn vào mục 'image'
+        // DỮ LIỆU NỘI DUNG ĐÃ GẮN ĐƯỜNG DẪN ẢNH TẠI THƯ MỤC LOCAL
         const appData = {
             "nuoc-tieu": {
                 title: "Nước Tiểu Thường",
-                image: "https://via.placeholder.com/100?text=Urine", // Thay link ảnh Pixar vào đây
+                image: "./urine.png", 
                 sections: [
                     { t: "1. Chuẩn bị", c: "Sử dụng ống nhựa trắng 7ml. <span class='highlight'>Rửa sạch tay và vùng kín</span> bằng nước sạch." },
                     { t: "2. Cách lấy", c: "Bỏ đoạn nước tiểu đầu. <span class='highlight'>Hứng đoạn giữa dòng</span> vào ống nhựa. Đừng để ống chạm vào da." },
@@ -187,7 +196,7 @@
             },
             "nuoc-tieu-24h": {
                 title: "Nước Tiểu 24H",
-                image: "https://via.placeholder.com/100?text=24H",
+                image: "./urine.png", 
                 sections: [
                     { t: "1. Bắt đầu (6 giờ sáng)", c: "<span class='highlight'>Tiểu hết bỏ đi</span>, không lấy vào bình." },
                     { t: "2. Thu thập", c: "Mọi lần đi tiểu sau đó (kể cả khi tắm, đi ngoài) <span class='highlight'>phải hứng hết vào bình</span>." },
@@ -196,7 +205,7 @@
             },
             "dam": {
                 title: "Xét Nghiệm Đàm",
-                image: "https://via.placeholder.com/100?text=Sputum",
+                image: "./sputum.png", 
                 sections: [
                     { t: "1. Chuẩn bị", c: "Nên lấy vào <span class='highlight'>sáng sớm khi mới ngủ dậy</span>. Súc miệng bằng nước muối sinh lý." },
                     { t: "2. Cách lấy", c: "Hít sâu, nín thở rồi <span class='highlight'>ho thật mạnh</span> để khạc đờm từ phổi ra lọ. Lấy đủ 2 lọ." },
@@ -205,7 +214,7 @@
             },
             "phan": {
                 title: "Xét Nghiệm Phân",
-                image: "https://via.placeholder.com/100?text=Stool",
+                image: "./stool.png", 
                 sections: [
                     { t: "1. Chuẩn bị", c: "Dùng bô sạch <span class='highlight'>tráng nước sôi để nguội</span>. Không dùng hóa chất tẩy rửa bô." },
                     { t: "2. Cách lấy", c: "Dùng que múc phân cỡ <span class='highlight'>đầu ngón tay út</span>. Lấy chỗ có nhày, máu hoặc lợn cợn trắng." },
@@ -222,7 +231,7 @@
                 const item = appData[key];
                 const btn = document.createElement('button');
                 btn.className = `nav-button ${index === 0 ? 'active' : ''}`;
-                btn.innerHTML = `<img src="${item.image}" alt="icon"> <span>${item.title}</span>`;
+                btn.innerHTML = `<img src="${item.image}" alt="icon" onerror="this.src='https://via.placeholder.com/55?text=Ảnh+Lỗi'"> <span>${item.title}</span>`;
                 btn.onclick = () => {
                     document.querySelectorAll('.nav-button').forEach(b => b.classList.remove('active'));
                     btn.classList.add('active');
@@ -235,7 +244,13 @@
 
         function showContent(key) {
             const data = appData[key];
-            let html = `<h2 style="color:var(--primary-teal); margin-top:0; font-size:1.8rem;">${data.title}</h2>`;
+            
+            // Khởi động lại animation mỗi khi đổi tab
+            content.style.animation = 'none';
+            content.offsetHeight; 
+            content.style.animation = null;
+
+            let html = `<h2 style="color:var(--primary-teal); margin-top:0; font-size:2rem; border-bottom: 2px solid #e2e8f0; padding-bottom: 15px; margin-bottom: 25px;">${data.title}</h2>`;
             data.sections.forEach(s => {
                 html += `
                     <div class="step-card">
@@ -247,6 +262,7 @@
             content.innerHTML = html;
         }
 
+        // Khởi chạy ứng dụng
         initApp();
     </script>
 </body>
