@@ -207,6 +207,15 @@
             border-radius: 5px;
         }
 
+        /* Highlight chữ KHÔNG */
+        .highlight-no {
+            color: red;
+            background-color: yellow;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 900;
+        }
+
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
@@ -468,7 +477,7 @@
                     `).join('');
 
                     return `
-                        <h2 style="color:var(--primary-blue); margin-top:0;">Danh Mục Báo Cáo Xét Nghiệm</h2>
+                        <h2 style="color:var(--primary-blue); margin-top:0;">Tra Cứu Danh Mục Xét Nghiệm</h2>
                         <input type="text" id="search-xn" class="search-bar" placeholder="🔍 Nhập tên xét nghiệm hoặc phân loại (VD: Glucose, Huyết học...)" onkeyup="filterTable()">
                         <table id="table-xn">
                             <tr class="header">
@@ -506,7 +515,7 @@
                 title: "Tiêu Chuẩn Nhận/Từ Chối",
                 icon: "📋",
                 render: () => `
-                    <h2 style="color:var(--primary-blue); border-bottom: 3px solid #e3f2fd; padding-bottom: 15px; margin-top:0;">Tiêu Chuẩn Chung & Cách Xử Lý Mẫu KHÔNG Đạt</h2>
+                    <h2 style="color:var(--primary-blue); border-bottom: 3px solid #e3f2fd; padding-bottom: 15px; margin-top:0;">Tiêu Chuẩn Chung & Cách Xử Lý Mẫu <span class="highlight-no">KHÔNG</span> Đạt</h2>
                     <div class="step-card">
                         <div class="step-title">✅ 1. Tiêu chuẩn chấp nhận chung</div>
                         <div class="step-content">
@@ -516,7 +525,7 @@
                         </div>
                     </div>
                     <div class="step-card">
-                        <div class="step-title">❌ 2. Mẫu KHÔNG đạt (Thông thường)</div>
+                        <div class="step-title">❌ 2. Mẫu <span class="highlight-no">KHÔNG</span> đạt (Thông thường)</div>
                         <div class="step-content">
                             - Khoa Xét Nghiệm <b>từ chối nhận mẫu</b>.<br>
                             - Thông báo cho bộ phận lấy mẫu lý do từ chối và hướng xử lý (lấy lại mẫu, bổ sung thông tin...).<br>
@@ -524,7 +533,7 @@
                         </div>
                     </div>
                     <div class="step-card">
-                        <div class="step-title">⚠️ 3. Mẫu KHÔNG đạt nhưng không thể lấy lại (DNT, Dịch khớp...)</div>
+                        <div class="step-title">⚠️ 3. Mẫu <span class="highlight-no">KHÔNG</span> đạt nhưng không thể lấy lại (DNT, Dịch khớp...)</div>
                         <div class="step-content">
                             - Khách hàng/Bác sĩ phải <span class="highlight">ghi rõ lý do, yêu cầu và ký xác nhận</span> vào phiếu chỉ định.<br>
                             - KXN tiến hành xét nghiệm và ghi chú tình trạng mẫu lên phiếu kết quả.<br>
