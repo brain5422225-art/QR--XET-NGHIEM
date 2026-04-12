@@ -5,22 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dịch Vụ Khách Hàng - Khoa Xét Nghiệm BVĐK Cà Mau</title>
     <style>
-        /* HỆ THỐNG MÀU SẮC CHUẨN Y TẾ HIỆN ĐẠI */
+        /* HỆ THỐNG MÀU SẮC CHUẨN Y TẾ HIỆN ĐẠI & BACKGROUND PASTEL */
         :root {
             --primary: #1565c0;
             --secondary: #00897b;
             --accent: #f44336;
-            --bg-light: #f8fbfe;
-            --text-dark: #263238;
+            --text-dark: #2c3e50;
             --border: #e0e6ed;
             --white: #ffffff;
+            --bg-pastel: #e3f2fd; /* Màu xanh dương pastel nhẹ nhàng */
         }
 
         body {
             font-family: 'Segoe UI', Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f0f4f7;
+            background-color: var(--bg-pastel);
             color: var(--text-dark);
             line-height: 1.6;
         }
@@ -102,10 +102,10 @@
         }
 
         /* Custom Scrollbar cho Sidebar */
-        .sidebar::-webkit-scrollbar { width: 6px; }
-        .sidebar::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 10px; }
-        .sidebar::-webkit-scrollbar-thumb { background: #c1c1c1; border-radius: 10px; }
-        .sidebar::-webkit-scrollbar-thumb:hover { background: #a8a8a8; }
+        .sidebar::-webkit-scrollbar { width: 6px; height: 6px;}
+        .sidebar::-webkit-scrollbar-track { background: transparent; border-radius: 10px; }
+        .sidebar::-webkit-scrollbar-thumb { background: #cfd8dc; border-radius: 10px; }
+        .sidebar::-webkit-scrollbar-thumb:hover { background: #b0bec5; }
 
         .nav-item {
             background: var(--white);
@@ -174,13 +174,21 @@
             border-radius: 10px;
         }
 
-        /* BẢNG BIỂU & TIMES NEW ROMAN */
+        /* BẢNG BIỂU & TIMES NEW ROMAN - TỐI ƯU MOBILE */
+        .table-responsive {
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch; /* Trượt mượt trên iOS */
+            border-radius: 8px;
+            box-shadow: inset 0 0 5px rgba(0,0,0,0.02);
+        }
+
         table {
             width: 100%;
             border-collapse: collapse;
             font-family: 'Times New Roman', Times, serif;
             font-size: 1.2rem;
-            margin-top: 15px;
+            min-width: 600px; /* Ép bảng giữ form, mobile tự cuộn ngang */
         }
 
         th, td {
@@ -218,7 +226,7 @@
             border-radius: 15px;
             margin-bottom: 25px;
             padding: 25px;
-            background: #fafafa;
+            background: #ffffff;
             box-shadow: 0 4px 10px rgba(0,0,0,0.03);
         }
         .pathology-title {
@@ -255,12 +263,38 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        @media (max-width: 1000px) {
-            .container.active { flex-direction: column; }
-            .sidebar { flex: none; width: 100%; flex-direction: row; overflow-x: auto; max-height: max-content; }
-            .nav-item { white-space: nowrap; font-size: 1rem; padding: 12px 15px; }
-            .sub-tab-container { flex-direction: column; gap: 10px; align-items: center; border: none; }
-            .sub-tab-btn { font-size: 1.1rem; border-bottom: 2px solid var(--border); width: 100%; }
+        /* ================= MOBILE RESPONSIVE ================= */
+        @media (max-width: 992px) {
+            /* Thu gọn Header */
+            header h1 { font-size: 1.6rem; letter-spacing: 1px; }
+            .hospital-name { font-size: 1rem; }
+
+            /* Điều chỉnh Main Navigation (Các nút lớn) */
+            .main-navigation { flex-direction: column; padding: 10px; gap: 10px; }
+            .tab-btn { width: 100%; font-size: 1.1rem; padding: 12px 20px; }
+
+            /* Thu gọn lề Container */
+            .container { width: 100%; padding: 0 10px; box-sizing: border-box; }
+            .container.active { flex-direction: column; gap: 15px; }
+
+            /* Định dạng lại Sidebar thành cuộn ngang */
+            .sidebar { flex: none; width: 100%; flex-direction: row; overflow-x: auto; max-height: max-content; padding-bottom: 10px; padding-right: 0;}
+            .nav-item { flex: 0 0 auto; margin-right: 10px; font-size: 1rem; padding: 12px 15px; margin-bottom: 0; border-radius: 8px;}
+
+            /* Định dạng lại Content Area */
+            .content-area { padding: 20px; max-height: max-content; overflow-y: visible; }
+            .patient-box { padding: 20px !important; } /* Ghi đè padding nội bộ */
+
+            /* Điều chỉnh Sub Tab (Hướng dẫn / Bệnh lý) */
+            .sub-tab-container { flex-direction: column; gap: 5px; align-items: stretch; border: none; margin-bottom: 20px; }
+            .sub-tab-btn { font-size: 1.1rem; padding: 10px; background: #f8f9fa; border: 1px solid var(--border); border-radius: 8px; }
+            .sub-tab-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
+            .sub-tab-btn.active::after { display: none; } /* Tắt thanh gạch chân trên mobile */
+
+            /* Điều chỉnh font chữ Text */
+            .step-title { font-size: 1.3rem; }
+            .pathology-title { font-size: 1.2rem; }
+            .search-box { font-size: 1rem; padding: 12px; }
         }
     </style>
 </head>
@@ -277,12 +311,12 @@
     </div>
 
     <div id="patient-view" class="container active" style="display: block;">
-        <div style="background: var(--white); border-radius: 20px; padding: 30px; box-shadow: 0 8px 24px rgba(0,0,0,0.05);">
+        <div class="patient-box" style="background: var(--white); border-radius: 20px; padding: 30px; box-shadow: 0 8px 24px rgba(0,0,0,0.05);">
             <div class="sub-tab-container">
                 <button class="sub-tab-btn active" id="sub-take-sample-btn" onclick="switchPatientSubTab('take-sample')">Hướng dẫn lấy mẫu</button>
                 <button class="sub-tab-btn" id="sub-reference-btn" onclick="switchPatientSubTab('reference')">Các Xét nghiệm tham khảo theo nhóm bệnh lý</button>
             </div>
-            <div id="patient-sub-content" style="display: flex; gap: 25px;">
+            <div id="patient-sub-content" style="display: flex; gap: 25px; flex-wrap: wrap;">
                 </div>
         </div>
     </div>
@@ -451,28 +485,28 @@
 
         // ================= 2. DỮ LIỆU BỆNH NHÂN (HƯỚNG DẪN) =================
         const patientInstructions = {
-            "nuoc-tieu": { title: "Nước Tiểu Thường", icon: "🧪", content: `
+            "nuoc-tieu": { title: "Nước Tiểu Thường", icon: "🩺", content: `
                 <div class="step-title">1. Chuẩn bị</div>
                 Sử dụng ống nhựa trắng 7ml. <span class='highlight-red'>Rửa sạch tay và vùng kín</span> bằng nước sạch.
                 <br><br><div class="step-title">2. Cách lấy</div>
                 Bỏ đoạn nước tiểu đầu. <span class='highlight-red'>Hứng đoạn giữa dòng</span> vào ống nhựa. Đừng để ống chạm vào da.
                 <br><br><div class="step-title">3. Hoàn tất</div>
                 Đóng nắp chặt. Đặt ống lên giá tại phòng xét nghiệm theo chỉ dẫn.` },
-            "nuoc-tieu-24h": { title: "Nước Tiểu 24H", icon: "🏺", content: `
+            "nuoc-tieu-24h": { title: "Nước Tiểu 24H", icon: "💊", content: `
                 <div class="step-title">1. Bắt đầu (6 giờ sáng)</div>
                 <span class='highlight-red'>Tiểu hết bỏ đi</span>, không lấy vào bình.
                 <br><br><div class="step-title">2. Thu thập</div>
                 Mọi lần đi tiểu sau đó (kể cả khi tắm, đi ngoài) <span class='highlight-red'>phải hứng hết vào bình lớn</span>.
                 <br><br><div class="step-title">3. Kết thúc</div>
                 6 giờ sáng hôm sau tiểu lần cuối vào bình. Lắc đều, đo tổng thể tích, ghi lại và <span class='highlight-red'>chiết ra lọ nhựa nhỏ</span> mang đi gửi.` },
-            "dam": { title: "Xét Nghiệm Đàm", icon: "🗣️", content: `
+            "dam": { title: "Xét Nghiệm Đàm", icon: "🫁", content: `
                 <div class="step-title">1. Chuẩn bị</div>
                 Nên lấy vào <span class='highlight-red'>sáng sớm khi mới ngủ dậy</span>. Súc miệng bằng nước muối sinh lý.
                 <br><br><div class="step-title">2. Cách lấy</div>
                 Hít sâu, nín thở rồi <span class='highlight-red'>ho thật mạnh</span> để khạc đờm từ phổi ra lọ. Đảm bảo lấy đàm đặc, đục/vàng/xanh, không lấy nước bọt.
                 <br><br><div class="step-title">3. Lưu ý</div>
                 Đóng nắp chặt. Mang nộp trong vòng 30 phút.` },
-            "phan": { title: "Xét Nghiệm Phân", icon: "💩", content: `
+            "phan": { title: "Xét Nghiệm Phân", icon: "🔬", content: `
                 <div class="step-title">1. Chuẩn bị</div>
                 Dùng bô sạch <span class='highlight-red'>tráng nước sôi để nguội</span>. Không dùng hóa chất tẩy rửa.
                 <br><br><div class="step-title">2. Cách lấy</div>
@@ -487,7 +521,7 @@
             "p2": { title: "Ung bướu (Ung thư)", icon: "🎗️", tests: "AFP (Gan), CEA (Tiêu hóa), PSA (Tiền liệt tuyến), CA 15-3 (Vú), Tg (Tuyến giáp), Tế bào học dịch.", meaning: "Tầm soát sớm, chẩn đoán và theo dõi đáp ứng điều trị các loại ung thư phổ biến. Tìm tế bào ác tính trong dịch cơ thể." },
             "p3": { title: "Hô hấp (Phổi, Lao)", icon: "🫁", tests: "Khí máu, CRP, Pro-calcitonin, Interleukin 6, Bạch cầu (WBC), Máu lắng, Nhuộm AFB tìm Lao, Cấy vi khuẩn.", meaning: "Đánh giá mức độ suy hô hấp. Tìm nguyên nhân viêm phổi cấp do vi khuẩn/virus và chẩn đoán đặc thù bệnh lao phổi." },
             "p4": { title: "Chuyển hóa & Tiểu đường", icon: "🩸", tests: "Glucose, HbA1C, Insulin, C-peptid, Acid Uric, Ceton, Ure, Creatinin, MAU niệu, Protein niệu 24h.", meaning: "Chẩn đoán, theo dõi kiểm soát đường huyết. Phát hiện sớm biến chứng thận của tiểu đường và theo dõi bệnh Gout." },
-            "p5": { title: "Gan mật & Tiêu hóa", icon: "🧪", tests: "AST, ALT, GGT, Bilirubin, Albumin, Amylase, Lipase, HBsAg, HCV Ab, Tải lượng HBV/HCV, Soi phân.", meaning: "Đánh giá mức độ tổn thương gan, viêm tụy cấp. Tầm soát viêm gan siêu vi B, C và tìm nguyên nhân xuất huyết tiêu hóa." },
+            "p5": { title: "Gan mật & Tiêu hóa", icon: "🧬", tests: "AST, ALT, GGT, Bilirubin, Albumin, Amylase, Lipase, HBsAg, HCV Ab, Tải lượng HBV/HCV, Soi phân.", meaning: "Đánh giá mức độ tổn thương gan, viêm tụy cấp. Tầm soát viêm gan siêu vi B, C và tìm nguyên nhân xuất huyết tiêu hóa." },
             "p6": { title: "Thận - Tiết niệu", icon: "💧", tests: "Ure, Creatinin, Điện giải, Calci, Phospho, Protein niệu 24h, Tế bào cặn nước tiểu, Cấy vi khuẩn nước tiểu.", meaning: "Đánh giá chức năng lọc của thận, rối loạn cân bằng điện giải. Chẩn đoán các tình trạng nhiễm trùng đường tiết niệu." },
             "p7": { title: "Truyền nhiễm & Ký sinh trùng", icon: "🦟", tests: "Dengue virus (Sốt xuất huyết), HIV, Sốt rét, Treponema pallidum (Giang mai), Salmonella, Toxocara (Giun đũa chó mèo).", meaning: "Chẩn đoán các bệnh dịch truyền nhiễm nhiệt đới nguy hiểm và xác định gánh nặng bệnh lý do giun sán lây nhiễm." },
             "p8": { title: "Chấn thương & Cấp cứu", icon: "🚑", tests: "Khí máu, Lactat, Ethanol (Cồn), Test ma túy, Nhóm máu ABO/Rh, Phản ứng hòa hợp.", meaning: "Đánh giá tình trạng hồi sức tích cực đa chấn thương. Tầm soát nguyên nhân tai nạn do rượu/ma túy và chuẩn bị an toàn truyền máu." },
@@ -499,32 +533,36 @@
 
         // ================= 4. DỮ LIỆU NHÂN VIÊN Y TẾ =================
         const staffMenu = {
-            "order": { title: "Thứ tự sử dụng ống", icon: "🧪", content: `
+            "order": { title: "Thứ tự sử dụng ống", icon: "💉", content: `
                 <h2 style="color:var(--primary); margin-top:0">Thứ Tự Bơm Máu Chuẩn</h2>
-                <table>
-                    <tr><th>Thứ tự</th><th>Loại ống / Màu nắp</th><th>Xét nghiệm tương ứng</th><th>Thể tích cần thiết</th><th>Số lần lắc trộn</th></tr>
-                    <tr><td>1</td><td>Chai cấy máu</td><td>Vi sinh (Cấy máu)</td><td>NL: 8-10ml; Trẻ em: 3-5ml</td><td>3 - 5 lần</td></tr>
-                    <tr><td>2</td><td>Sodium Citrate 3.8% <br><span style="color:blue; font-weight:bold;">Xanh dương</span></td><td>Đông máu</td><td>Đúng 2 ml (bắt buộc)</td><td>5 - 8 lần</td></tr>
-                    <tr><td>3</td><td>Sodium Citrate 1:4 <br><span style="color:gray; font-weight:bold;">Đen dài</span></td><td>Máu lắng (ESR)</td><td>1.6 ml</td><td>5 - 8 lần</td></tr>
-                    <tr><td>4</td><td>Serum <br><span style="color:red; font-weight:bold;">Đỏ</span></td><td>Vi sinh, Miễn dịch, Hóa sinh</td><td>2 - 3 ml</td><td>3 - 5 lần</td></tr>
-                    <tr><td>5</td><td>Heparin <br><span style="color:gray; font-weight:bold;">Đen</span></td><td>Hóa sinh, Miễn dịch</td><td>2 ml</td><td>5 - 8 lần</td></tr>
-                    <tr><td>6</td><td>EDTA <br><span style="color:purple; font-weight:bold;">Tím/Xanh dương</span></td><td>Công thức máu, HbA1c</td><td>2 ml</td><td>5 - 8 lần</td></tr>
-                </table>` },
+                <div class="table-responsive">
+                    <table>
+                        <tr><th>Thứ tự</th><th>Loại ống / Màu nắp</th><th>Xét nghiệm tương ứng</th><th>Thể tích cần thiết</th><th>Số lần lắc trộn</th></tr>
+                        <tr><td>1</td><td>Chai cấy máu</td><td>Vi sinh (Cấy máu)</td><td>NL: 8-10ml; Trẻ em: 3-5ml</td><td>3 - 5 lần</td></tr>
+                        <tr><td>2</td><td>Sodium Citrate 3.8% <br><span style="color:blue; font-weight:bold;">Xanh dương</span></td><td>Đông máu</td><td>Đúng 2 ml (bắt buộc)</td><td>5 - 8 lần</td></tr>
+                        <tr><td>3</td><td>Sodium Citrate 1:4 <br><span style="color:gray; font-weight:bold;">Đen dài</span></td><td>Máu lắng (ESR)</td><td>1.6 ml</td><td>5 - 8 lần</td></tr>
+                        <tr><td>4</td><td>Serum <br><span style="color:red; font-weight:bold;">Đỏ</span></td><td>Vi sinh, Miễn dịch, Hóa sinh</td><td>2 - 3 ml</td><td>3 - 5 lần</td></tr>
+                        <tr><td>5</td><td>Heparin <br><span style="color:gray; font-weight:bold;">Đen</span></td><td>Hóa sinh, Miễn dịch</td><td>2 ml</td><td>5 - 8 lần</td></tr>
+                        <tr><td>6</td><td>EDTA <br><span style="color:purple; font-weight:bold;">Tím/Xanh dương</span></td><td>Công thức máu, HbA1c</td><td>2 ml</td><td>5 - 8 lần</td></tr>
+                    </table>
+                </div>` },
             "dictionary": { title: "Tra Cứu Danh Mục Xét Nghiệm", icon: "🔍", isDictionary: true },
-            "collect": { title: "Quy Chuẩn Thu Thập", icon: "🩸", content: `
+            "collect": { title: "Quy Chuẩn Thu Thập", icon: "🩺", content: `
                 <h2 style="color:var(--primary); margin-top:0">Hướng Dẫn Thu Thập Bệnh Phẩm</h2>
-                <table>
-                    <tr><th>Loại bệnh phẩm</th><th>Dụng cụ chứa</th><th>Yêu cầu / Cách lấy</th><th>Thể tích</th><th>Thời gian vận chuyển</th><th>Tiêu chuẩn từ chối</th></tr>
-                    <tr><td>Máu tĩnh mạch</td><td>Ống serum (đỏ) hoặc chống đông</td><td>Nhịn đói 8h (sinh hóa). Lắc ống 5-8 lần. Không bọt khí.</td><td>Tùy ống</td><td>Càng sớm càng tốt</td><td>Tán huyết; Cục máu đông; Sai thể tích</td></tr>
-                    <tr><td>Khí máu động mạch</td><td>Bơm tiêm 1ml tráng Heparin</td><td>Không có bọt khí, trộn đều liên tục.</td><td>0.5 - 1 ml</td><td>Không quá 30 phút</td><td></td></tr>
-                    <tr><td>Máu (Cấy máu)</td><td>Chai cấy máu</td><td>Lấy trước khi sốt cao. Sát khuẩn da kỹ. Lắc chai 3-5 lần.</td><td>NL: 8-10ml</td><td>Tối đa 30p</td><td>Không đủ thể tích; Sai bảo quản</td></tr>
-                    <tr><td>Nước tiểu (Cấy)</td><td>Lọ vô khuẩn (đỏ)</td><td>Lấy giữa dòng hoặc qua catheter. Vệ sinh kỹ.</td><td>~ 10 ml</td><td>Gửi ngay (30 phút)</td><td>Để quá 2 tiếng; Mọc >3 loại VK</td></tr>
-                    <tr><td>Dịch (não tủy, phổi...)</td><td>Lọ vô khuẩn / Ống sạch</td><td>BS chọc dò vô khuẩn. Lấy trước khi dùng KS.</td><td>3 - 10 ml</td><td>Gửi ngay trong 30 phút</td><td>Dịch bị đông; Lấy từ ống dẫn lưu</td></tr>
-                    <tr><td>Mủ</td><td>Tăm bông vô khuẩn</td><td>Rửa sạch vết thương NMSL. Lấy mủ ở đáy tổn thương.</td><td>1.5-2ml</td><td>Gửi ngay trong 30 phút</td><td>Tăm bông bị khô</td></tr>
-                    <tr><td>Ngoáy họng</td><td>Que tăm bông vô khuẩn</td><td>Quệt vào amidan/giả mạc, tránh chạm răng/lưỡi.</td><td>2 que</td><td>Gửi ngay trong 30 phút</td><td>Tăm bông bị khô</td></tr>
-                    <tr><td>Phân</td><td>Lọ vô khuẩn</td><td>Lấy vùng nhầy/máu. Lấy sớm trước dùng KS.</td><td>~ 5 gram</td><td>Gửi ngay trong 30 phút</td><td></td></tr>
-                    <tr><td>Đàm</td><td>Lọ nhựa sạch</td><td>Súc miệng NMSL. Lấy đàm đặc, đục/vàng/xanh.</td><td>Đủ XN</td><td>Gửi ngay trong 30 phút</td><td>Dịch nhớt trong (nước bọt)</td></tr>
-                </table>` },
+                <div class="table-responsive">
+                    <table>
+                        <tr><th>Loại bệnh phẩm</th><th>Dụng cụ chứa</th><th>Yêu cầu / Cách lấy</th><th>Thể tích</th><th>Thời gian vận chuyển</th><th>Tiêu chuẩn từ chối</th></tr>
+                        <tr><td>Máu tĩnh mạch</td><td>Ống serum (đỏ) hoặc chống đông</td><td>Nhịn đói 8h (sinh hóa). Lắc ống 5-8 lần. Không bọt khí.</td><td>Tùy ống</td><td>Càng sớm càng tốt</td><td>Tán huyết; Cục máu đông; Sai thể tích</td></tr>
+                        <tr><td>Khí máu động mạch</td><td>Bơm tiêm 1ml tráng Heparin</td><td>Không có bọt khí, trộn đều liên tục.</td><td>0.5 - 1 ml</td><td>Không quá 30 phút</td><td></td></tr>
+                        <tr><td>Máu (Cấy máu)</td><td>Chai cấy máu</td><td>Lấy trước khi sốt cao. Sát khuẩn da kỹ. Lắc chai 3-5 lần.</td><td>NL: 8-10ml</td><td>Tối đa 30p</td><td>Không đủ thể tích; Sai bảo quản</td></tr>
+                        <tr><td>Nước tiểu (Cấy)</td><td>Lọ vô khuẩn (đỏ)</td><td>Lấy giữa dòng hoặc qua catheter. Vệ sinh kỹ.</td><td>~ 10 ml</td><td>Gửi ngay (30 phút)</td><td>Để quá 2 tiếng; Mọc >3 loại VK</td></tr>
+                        <tr><td>Dịch (não tủy, phổi...)</td><td>Lọ vô khuẩn / Ống sạch</td><td>BS chọc dò vô khuẩn. Lấy trước khi dùng KS.</td><td>3 - 10 ml</td><td>Gửi ngay trong 30 phút</td><td>Dịch bị đông; Lấy từ ống dẫn lưu</td></tr>
+                        <tr><td>Mủ</td><td>Tăm bông vô khuẩn</td><td>Rửa sạch vết thương NMSL. Lấy mủ ở đáy tổn thương.</td><td>1.5-2ml</td><td>Gửi ngay trong 30 phút</td><td>Tăm bông bị khô</td></tr>
+                        <tr><td>Ngoáy họng</td><td>Que tăm bông vô khuẩn</td><td>Quệt vào amidan/giả mạc, tránh chạm răng/lưỡi.</td><td>2 que</td><td>Gửi ngay trong 30 phút</td><td>Tăm bông bị khô</td></tr>
+                        <tr><td>Phân</td><td>Lọ vô khuẩn</td><td>Lấy vùng nhầy/máu. Lấy sớm trước dùng KS.</td><td>~ 5 gram</td><td>Gửi ngay trong 30 phút</td><td></td></tr>
+                        <tr><td>Đàm</td><td>Lọ nhựa sạch</td><td>Súc miệng NMSL. Lấy đàm đặc, đục/vàng/xanh.</td><td>Đủ XN</td><td>Gửi ngay trong 30 phút</td><td>Dịch nhớt trong (nước bọt)</td></tr>
+                    </table>
+                </div>` },
             "policy": { title: "Tiêu Chuẩn Nhận/Từ Chối", icon: "⚠️", content: `
                 <h2 style="color:var(--primary); margin-top:0">Tiêu Chuẩn Chung & Cách Xử Lý Mẫu <span class="highlight-no">KHÔNG</span> Đạt</h2>
                 <div class="pathology-card">
@@ -574,7 +612,12 @@
             event.target.classList.add('active');
             const targetContainer = document.getElementById(view + '-view');
             targetContainer.classList.add('active');
-            targetContainer.style.display = 'block';
+            targetContainer.style.display = 'flex'; // Trả về dạng flex cho desktop
+
+            // Fix responsive container dạng column nếu đang ở chế độ mobile
+            if (window.innerWidth <= 992) {
+                targetContainer.style.flexDirection = 'column';
+            }
 
             if(view === 'patient') switchPatientSubTab('take-sample');
             else renderStaffSide();
@@ -618,21 +661,21 @@
             const item = data[key];
             if(isPathology) {
                 display.innerHTML = `
-                    <h2 style="color:var(--primary); margin-top:0; border-bottom: 2px solid #e3f2fd; padding-bottom: 15px;">
+                    <h2 style="color:var(--primary); margin-top:0; border-bottom: 2px solid var(--border); padding-bottom: 15px;">
                         <span style="font-size:1.8rem">${item.icon}</span> ${item.title}
                     </h2>
                     <div class="pathology-card">
                         <div class="pathology-title">🧬 Các xét nghiệm hỗ trợ:</div>
-                        <p style="font-size:1.3rem; font-family:'Times New Roman', serif; line-height: 1.8; color: var(--text-dark);">${item.tests}</p>
+                        <p style="font-size:1.3rem; font-family:'Times New Roman', serif; line-height: 1.8; color: var(--text-dark); margin-bottom: 0;">${item.tests}</p>
                     </div>
                     <div class="pathology-card" style="border-left: 6px solid var(--secondary)">
                         <div class="pathology-title">💡 Vai trò & Ý nghĩa lâm sàng:</div>
-                        <p style="font-size:1.25rem; line-height: 1.7; color: var(--text-dark);">${item.meaning}</p>
+                        <p style="font-size:1.25rem; line-height: 1.7; color: var(--text-dark); margin-bottom: 0;">${item.meaning}</p>
                     </div>
                 `;
             } else {
                 display.innerHTML = `
-                    <h2 style="color:var(--primary); margin-top:0; border-bottom: 2px solid #e3f2fd; padding-bottom: 15px;">
+                    <h2 style="color:var(--primary); margin-top:0; border-bottom: 2px solid var(--border); padding-bottom: 15px;">
                         <span style="font-size:1.8rem">${item.icon}</span> ${item.title}
                     </h2>
                     <div style="font-size:1.25rem; line-height: 1.8;">${item.content}</div>
@@ -665,8 +708,8 @@
             if(item.isDictionary) {
                 display.innerHTML = `
                     <h2 style="color:var(--primary); margin-top:0">${item.title}</h2>
-                    <input type="text" id="searchInput" class="search-box" placeholder="🔍 Nhập tên xét nghiệm hoặc phân loại (VD: Glucose, Huyết học...)" onkeyup="searchLab(this.value)">
-                    <div id="dict-results"></div>
+                    <input type="text" id="searchInput" class="search-box" placeholder="🔍 Nhập tên xét nghiệm hoặc phân loại (VD: Glucose...)" onkeyup="searchLab(this.value)">
+                    <div id="dict-results" class="table-responsive"></div>
                 `;
                 searchLab(''); // Tải toàn bộ bảng lần đầu
             } else {
@@ -713,9 +756,26 @@
             results.innerHTML = html;
         }
 
+        // Lắng nghe sự kiện resize để fix giao diện
+        window.addEventListener('resize', () => {
+            const activeContainer = document.querySelector('.container.active');
+            if(activeContainer) {
+                if (window.innerWidth <= 992) {
+                    activeContainer.style.flexDirection = 'column';
+                } else {
+                    activeContainer.style.flexDirection = 'row';
+                }
+            }
+        });
+
         // Chạy mặc định khi web vừa load xong
         window.onload = () => {
             switchPatientSubTab('take-sample');
+            
+            // Fix initial display mode
+            if (window.innerWidth <= 992) {
+                document.getElementById('patient-view').style.flexDirection = 'column';
+            }
         };
     </script>
 </body>
