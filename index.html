@@ -5,227 +5,236 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dịch Vụ Khách Hàng - Khoa Xét Nghiệm BVĐK Cà Mau</title>
     <style>
-        /* MÀU SẮC Y TẾ & TỔNG QUAN */
+        /* HỆ THỐNG MÀU SẮC CHUẨN Y TẾ HIỆN ĐẠI */
         :root {
-            --primary-blue: #1565c0;
-            --light-blue: #e3f2fd;
-            --active-blue: #0d47a1;
-            --text-main: #2c3e50;
-            --text-red: #d32f2f;
-            --card-bg: #ffffff;
-            --border-color: #cfd8dc;
+            --primary: #1565c0;
+            --secondary: #00897b;
+            --accent: #f44336;
+            --bg-light: #f8fbfe;
+            --text-dark: #263238;
+            --border: #e0e6ed;
+            --white: #ffffff;
+            --highlight-bg: #fff59d; /* Màu dạ quang vàng */
         }
 
         body {
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-family: 'Segoe UI', Arial, sans-serif;
             margin: 0;
             padding: 0;
-            min-height: 100vh;
-            background-color: var(--light-blue);
-            color: var(--text-main);
-            display: flex;
-            flex-direction: column;
+            background-color: #f0f4f7;
+            color: var(--text-dark);
+            line-height: 1.6;
         }
 
+        /* HEADER */
         header {
-            background: var(--primary-blue);
+            background: linear-gradient(135deg, var(--primary) 0%, #1e88e5 100%);
             color: white;
-            padding: 20px 0;
+            padding: 25px 0;
             text-align: center;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
         }
 
         header h1 {
             margin: 0;
-            font-size: 2.2rem;
+            font-size: 2rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
         }
 
-        /* MAIN TABS */
-        .main-tabs {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin: 30px auto 10px;
-            width: 95%;
-            max-width: 1400px;
-        }
-
-        .main-tab-btn {
-            padding: 15px 40px;
-            font-size: 1.4rem;
-            font-weight: 700;
-            border: 2px solid var(--primary-blue);
-            border-radius: 30px;
-            background: var(--card-bg);
-            color: var(--primary-blue);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-        }
-
-        .main-tab-btn.active {
-            background: var(--primary-blue);
-            color: white;
-            box-shadow: 0 6px 12px rgba(21, 101, 192, 0.3);
-        }
-
-        /* BỐ CỤC NỘI DUNG */
-        .wrapper {
-            display: none;
-            max-width: 1400px;
-            width: 95%;
-            margin: 20px auto 40px;
-            gap: 30px;
-            flex-grow: 1;
-            align-items: stretch;
-        }
-
-        .wrapper.active {
-            display: flex;
-            animation: fadeIn 0.4s ease-out;
-        }
-
-        .sidebar {
-            flex: 0 0 300px;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .nav-button {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 15px;
-            padding: 18px 20px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            text-align: left;
+        .hospital-name {
             font-size: 1.2rem;
             font-weight: 600;
-            color: #546e7a;
+            margin-top: 8px;
+            opacity: 0.9;
         }
 
-        .nav-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(0,0,0,0.05);
-            border-color: #90caf9;
-        }
-
-        .nav-button.active {
-            background: #e3f2fd;
-            border-color: var(--primary-blue);
-            color: var(--active-blue);
-            border-left: 6px solid var(--primary-blue);
-        }
-
-        .content-box {
-            flex: 1;
-            background: var(--card-bg);
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-            overflow-x: auto;
-            max-height: 80vh;
-            overflow-y: auto;
-        }
-
-        /* BẢNG DỮ LIỆU & TÌM KIẾM */
-        .search-bar {
-            width: 100%;
-            padding: 15px 20px;
-            font-size: 1.2rem;
-            border: 2px solid var(--border-color);
-            border-radius: 10px;
-            margin-bottom: 20px;
-            box-sizing: border-box;
+        /* HỆ THỐNG TAB CHÍNH */
+        .main-navigation {
+            display: flex;
+            justify-content: center;
+            background: var(--white);
+            padding: 15px 0;
+            gap: 15px;
             position: sticky;
             top: 0;
-            z-index: 10;
-        }
-        
-        .search-bar:focus {
-            outline: none;
-            border-color: var(--primary-blue);
+            z-index: 100;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
         }
 
+        .tab-btn {
+            padding: 12px 30px;
+            border: 2px solid var(--primary);
+            background: transparent;
+            color: var(--primary);
+            border-radius: 50px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+            font-size: 1.1rem;
+        }
+
+        .tab-btn.active {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        /* KHÔNG GIAN NỘI DUNG */
+        .container {
+            max-width: 1400px;
+            margin: 20px auto;
+            width: 95%;
+            display: none; /* Ẩn mặc định */
+            animation: fadeIn 0.4s ease;
+        }
+
+        .container.active { display: flex; gap: 20px; }
+
+        /* SIDEBAR CUỘN CHUYÊN NGHIỆP */
+        .sidebar {
+            flex: 0 0 320px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            max-height: 80vh;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+
+        .nav-item {
+            background: var(--white);
+            border: 1px solid var(--border);
+            padding: 15px 20px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            color: #455a64;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: 0.2s;
+        }
+
+        .nav-item:hover { border-color: var(--primary); background: #f1f8ff; }
+        .nav-item.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .content-area {
+            flex: 1;
+            background: var(--white);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.05);
+            min-height: 60vh;
+        }
+
+        /* TAB PHỤ TRONG PHẦN BỆNH NHÂN */
+        .sub-tab-container {
+            display: flex;
+            margin-bottom: 25px;
+            border-bottom: 2px solid var(--border);
+            gap: 30px;
+        }
+
+        .sub-tab-btn {
+            padding: 10px 0;
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #90a4ae;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .sub-tab-btn.active {
+            color: var(--primary);
+        }
+
+        .sub-tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--primary);
+            border-radius: 10px;
+        }
+
+        /* BẢNG BIỂU & TIMES NEW ROMAN */
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 15px;
             font-family: 'Times New Roman', Times, serif;
-            font-size: 1.15rem;
+            font-size: 1.2rem;
+            margin-top: 10px;
         }
 
         th, td {
-            border: 1px solid var(--border-color);
-            padding: 12px 15px;
+            border: 1px solid var(--border);
+            padding: 14px;
             text-align: left;
-            line-height: 1.5;
         }
 
         th {
-            background-color: var(--primary-blue);
-            color: white;
+            background: #f8f9fa;
             font-family: 'Segoe UI', sans-serif;
-            font-weight: 600;
-            font-size: 1.1rem;
-            position: sticky;
-            top: 55px;
-            z-index: 9;
-        }
-
-        tr:nth-child(even) { background-color: #f9fbfd; }
-        tr:hover { background-color: #f1f8e9; }
-
-        /* DANH CHO BENH NHAN - CARDS */
-        .step-card {
-            margin-bottom: 25px;
-            padding-bottom: 20px;
-            border-bottom: 2px dashed var(--border-color);
-        }
-        .step-card:last-child { border: none; }
-        .step-title {
-            font-size: 1.5rem;
-            color: var(--primary-blue);
-            margin-bottom: 10px;
+            color: var(--primary);
             font-weight: 700;
         }
-        .step-content {
-            font-size: 1.25rem;
-            line-height: 1.8;
-        }
-        .highlight {
-            color: var(--text-red);
-            font-weight: bold;
-            background: #ffebee;
-            padding: 2px 8px;
-            border-radius: 5px;
-        }
 
-        /* Highlight chữ KHÔNG */
-        .highlight-no {
+        /* HIGHLIGHT "KHÔNG" DẠ QUANG */
+        .no-highlight {
             color: red;
             background-color: yellow;
-            padding: 2px 6px;
-            border-radius: 4px;
+            padding: 0 5px;
             font-weight: 900;
+            border-radius: 3px;
         }
+
+        /* PATHOLOGY CARDS (NHÓM BỆNH LÝ) */
+        .pathology-card {
+            border: 1px solid var(--border);
+            border-radius: 15px;
+            margin-bottom: 20px;
+            padding: 20px;
+            background: #fafafa;
+        }
+        .pathology-title {
+            font-size: 1.3rem;
+            color: var(--secondary);
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        /* TIỆN ÍCH */
+        .search-box {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            outline: none;
+        }
+        .search-box:focus { border-color: var(--primary); }
+
+        .step-title { font-size: 1.4rem; color: var(--primary); font-weight: 700; margin-bottom: 10px; display: block;}
+        .highlight-red { color: red; font-weight: bold; }
 
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        @media (max-width: 900px) {
-            .wrapper { flex-direction: column; }
-            .sidebar { flex-direction: row; flex-wrap: wrap; flex: none; }
-            .nav-button { flex: 1 1 45%; justify-content: center; text-align: center; }
-            .main-tabs { flex-direction: column; }
+        @media (max-width: 1000px) {
+            .container.active { flex-direction: column; }
+            .sidebar { flex: none; width: 100%; flex-direction: row; overflow-x: auto; }
+            .nav-item { white-space: nowrap; }
         }
     </style>
 </head>
@@ -233,411 +242,228 @@
 
     <header>
         <h1>Dịch Vụ Khách Hàng</h1>
-        <div style="font-size: 1.2rem; font-weight: 600; margin-top: 8px; opacity: 0.95;">KHOA XÉT NGHIỆM - BỆNH VIỆN ĐA KHOA CÀ MAU</div>
+        <div class="hospital-name">KHOA XÉT NGHIỆM - BỆNH VIỆN ĐA KHOA CÀ MAU</div>
     </header>
 
-    <div class="main-tabs">
-        <button class="main-tab-btn active" onclick="switchMainTab('patient')">👨‍👩‍👧‍👦 Dành Cho Bệnh Nhân</button>
-        <button class="main-tab-btn" onclick="switchMainTab('staff')">🩺 Dành Cho Nhân Viên Y Tế</button>
+    <div class="main-navigation">
+        <button class="tab-btn active" onclick="switchView('patient')">👩‍💼 DÀNH CHO BỆNH NHÂN</button>
+        <button class="tab-btn" onclick="switchView('staff')">🩺 DÀNH CHO NHÂN VIÊN Y TẾ</button>
     </div>
 
-    <div class="wrapper active" id="patient-view">
-        <div class="sidebar" id="patient-nav"></div>
-        <div class="content-box" id="patient-content"></div>
+    <div id="patient-view" class="container active">
+        <div class="content-area">
+            <div class="sub-tab-container">
+                <button class="sub-tab-btn active" id="sub-take-sample-btn" onclick="switchPatientSubTab('take-sample')">Hướng dẫn lấy mẫu</button>
+                <button class="sub-tab-btn" id="sub-reference-btn" onclick="switchPatientSubTab('reference')">Các Xét nghiệm tham khảo theo nhóm bệnh lý</button>
+            </div>
+
+            <div id="patient-sub-content" style="display: flex; gap: 20px;">
+                </div>
+        </div>
     </div>
 
-    <div class="wrapper" id="staff-view">
-        <div class="sidebar" id="staff-nav"></div>
-        <div class="content-box" id="staff-content"></div>
+    <div id="staff-view" class="container">
+        <div class="sidebar" id="staff-sidebar">
+            </div>
+        <div class="content-area" id="staff-content">
+            </div>
     </div>
 
     <script>
-        // ================= DỮ LIỆU TỪ ĐIỂN XÉT NGHIỆM ĐẦY ĐỦ =================
-        const labTestsData = [
-            // Sinh hóa máu
-            { name: "Xét nghiệm Khí máu [máu] (pH, pO2, pCO2, HCO3-)", group: "Sinh hóa máu", time: "30 phút / 15 phút", ref: "pH: 7.35-7.45; pO2: 75-100 mmHg; pCO2: 35-45 mmHg; HCO3-: 22-26 mmol/L", alert: "pH: < 7.0 hoặc > 7.6; pO2: < 45 mmHg; pCO2: < 20 hoặc > 70 mmHg; HCO3-: < 10 hoặc > 40 mmol/L." },
-            { name: "Định lượng Glucose [máu]", group: "Sinh hóa máu", time: "120 phút / 45 phút", ref: "70 - 110 mg/dL", alert: "≤ 45 hoặc > 500 mg/dL." },
-            { name: "Định lượng Ure [máu]", group: "Sinh hóa máu", time: "120 phút / 45 phút", ref: "20 - 40 mg/dL", alert: "≥ 70 mg/dL." },
-            { name: "Định lượng Creatinin [máu]", group: "Sinh hóa máu", time: "120 phút / 45 phút", ref: "0.6 - 1.5 mg/dL", alert: "≥ 10 mg/dL." },
-            { name: "Đo hoạt độ AST (GOT) [máu]", group: "Sinh hóa máu", time: "120 phút / 45 phút", ref: "10 - 37 U/L", alert: "> 1600 U/L." },
-            { name: "Đo hoạt độ ALT (GPT) [máu]", group: "Sinh hóa máu", time: "120 phút / 45 phút", ref: "10 - 40 U/L", alert: "> 1600 U/L." },
-            { name: "Đo hoạt độ GGT [máu]", group: "Sinh hóa máu", time: "120 phút / 45 phút", ref: "12 - 45 U/L", alert: "" },
-            { name: "Định lượng Triglyceride [máu]", group: "Sinh hóa máu", time: "120 phút / 45 phút", ref: "70 - 150 mg/dL", alert: "" },
-            { name: "Định lượng Cholesterol toàn phần [máu]", group: "Sinh hóa máu", time: "120 phút / 45 phút", ref: "150 - 220 mg/dL", alert: "" },
-            { name: "Định lượng HDL-C [máu]", group: "Sinh hóa máu", time: "120 phút / 45 phút", ref: "> 40 mg/dL", alert: "" },
-            { name: "Định lượng LDL-C [máu]", group: "Sinh hóa máu", time: "120 phút / 45 phút", ref: "< 130 mg/dL", alert: "" },
-            { name: "Định lượng Acid Uric [máu]", group: "Sinh hóa máu", time: "120 phút / 45 phút", ref: "4 - 7 mg/dL", alert: "" },
-            { name: "Định lượng Albumin [máu]", group: "Sinh hóa máu", time: "120 phút / 45 phút", ref: "45 - 55 g/L", alert: "" },
-            { name: "Định lượng Protein toàn phần [máu]", group: "Sinh hóa máu", time: "120 phút / 45 phút", ref: "60 - 80 g/L", alert: "" },
-            { name: "Định lượng Bilirubin toàn phần [máu]", group: "Sinh hóa máu", time: "120 phút / 45 phút", ref: "< 1 mg/dL", alert: "" },
-            { name: "Định lượng Bilirubin trực tiếp [máu]", group: "Sinh hóa máu", time: "120 phút / 45 phút", ref: "< 0.3 mg/dL", alert: "" },
-            { name: "Định lượng CRP", group: "Sinh hóa máu", time: "120 phút / 45 phút", ref: "< 6 mg/L", alert: "" },
-            { name: "Đo hoạt độ LDH [máu]", group: "Sinh hóa máu", time: "120 phút / 45 phút", ref: "< 450 U/L", alert: "" },
-            { name: "Định lượng sắt huyết thanh", group: "Sinh hóa máu", time: "120 phút / 45 phút", ref: "60 - 180 µg/dl", alert: "≥ 350 µg/dl." },
-            { name: "Định lượng Ethanol (cồn) [máu]", group: "Sinh hóa máu", time: "120 phút / 45 phút", ref: "< 20 mg/dL", alert: "" },
-            { name: "Đo hoạt độ Amylase [máu]", group: "Sinh hóa máu", time: "120 phút / 45 phút", ref: "< 90 U/L", alert: "> 355 U/L." },
-            { name: "Đo hoạt độ CK-MB [máu]", group: "Sinh hóa máu", time: "120 phút / 45 phút", ref: "< 24 U/L", alert: "" },
-            { name: "Định lượng Lactat [máu]", group: "Sinh hóa máu", time: "120 phút / 45 phút", ref: "10 - 22 mg/dL", alert: "≥ 30.6 mg/dL." },
-            { name: "Streptococcus Pyogenes ASO", group: "Sinh hóa máu", time: "120 phút / 45 phút", ref: "< 200 IU/ml", alert: "" },
-            { name: "Định lượng RF [máu]", group: "Sinh hóa máu", time: "120 phút / 45 phút", ref: "≤ 14 IU/mL", alert: "" },
-            { name: "Điện giải đồ (Na, K, Cl) [máu]", group: "Sinh hóa máu", time: "120 phút / 45 phút", ref: "Na: 135-150 mEq/L; K: 3.5-5.5 mEq/L; Cl: 98-110 mEq/L", alert: "Na: ≤ 115 hoặc ≥ 165 mEq/L; K: ≤ 2.5 hoặc ≥ 5.5 mEq/L; Cl: ≤ 70 hoặc ≥ 120 mEq/L." },
-            { name: "Định lượng Calci toàn phần [máu]", group: "Sinh hóa máu", time: "120 phút / 45 phút", ref: "2.2 - 2.6 mEq/L", alert: "≤ 1.625 hoặc ≥ 3.25 mEq/L." },
-            { name: "Định lượng Calci ion hóa [máu]", group: "Sinh hóa máu", time: "120 phút / 45 phút", ref: "1.1 - 1.3 mEq/L", alert: "≤ 0.75 hoặc ≥ 1.625 mEq/L." },
-            { name: "Đo hoạt độ Lipase [máu]", group: "Sinh hóa máu", time: "120 phút / 45 phút", ref: "10-18 tuổi: 7-39 U/L; >18 tuổi: < 67 U/L", alert: "" },
-            { name: "Định lượng Ceton", group: "Sinh hóa máu", time: "120 phút / 45 phút", ref: "0.03 - 0.3 mmol/L", alert: "" },
-            { name: "Định lượng HbA1C [máu]", group: "Sinh hóa máu", time: "120 phút / 30 phút", ref: "4.2 - 6.4%", alert: "" },
-            { name: "Đo hoạt độ ALP [máu]", group: "Sinh hóa máu", time: "120 phút / 45 phút", ref: "Nam: 43-115 U/L; Nữ: 33-98 U/L", alert: "" },
-            { name: "Định lượng Phospho [máu]", group: "Sinh hóa máu", time: "120 phút / 45 phút", ref: "2.5 - 4.5 mg/dL", alert: "≥ 8.9 mg/dL." },
-            { name: "Định lượng Amoniac (NH3) [máu]", group: "Sinh hóa máu", time: "120 phút / 45 phút", ref: "18 - 72 µmol/L", alert: "≥ 200 µmol/L." },
-            
-            // Miễn dịch
-            { name: "Định lượng FT3 [máu]", group: "Miễn dịch", time: "120 phút / 60 phút", ref: "1.4 - 4.2 pg/mL", alert: "" },
-            { name: "Định lượng FT4 [máu]", group: "Miễn dịch", time: "120 phút / 60 phút", ref: "0.8 - 2.0 ng/dL", alert: "" },
-            { name: "Định lượng TSH [máu]", group: "Miễn dịch", time: "120 phút / 60 phút", ref: "0.3 - 6.2 mIU/L", alert: "" },
-            { name: "Định lượng AFP [máu]", group: "Miễn dịch", time: "120 phút / 60 phút", ref: "< 20 ng/ml", alert: "" },
-            { name: "Định lượng PSA toàn phần [máu]", group: "Miễn dịch", time: "120 phút / 60 phút", ref: "< 4 ng/ml", alert: "" },
-            { name: "Định lượng CEA [máu]", group: "Miễn dịch", time: "120 phút / 60 phút", ref: "< 5 ng/ml", alert: "" },
-            { name: "Định lượng CA 15-3 [máu]", group: "Miễn dịch", time: "120 phút / 60 phút", ref: "< 31.4 IU/mL", alert: "" },
-            { name: "HBsAg test nhanh", group: "Miễn dịch", time: "60 phút", ref: "Âm tính", alert: "" },
-            { name: "HIV Ab test nhanh", group: "Miễn dịch", time: "60 phút", ref: "Âm tính", alert: "" },
-            { name: "Dengue virus IgM/IgG test nhanh", group: "Miễn dịch", time: "60 phút", ref: "Âm tính", alert: "" },
-            { name: "Dengue virus NS1Ag test nhanh", group: "Miễn dịch", time: "60 phút", ref: "Âm tính", alert: "" },
-            { name: "Treponema pallidum test nhanh", group: "Miễn dịch", time: "60 phút", ref: "Âm tính", alert: "" },
-            { name: "Salmonella Widal", group: "Miễn dịch", time: "120 phút / 60 phút", ref: "Âm tính", alert: "" },
+        // ================= DỮ LIỆU CẤU TRÚC =================
+
+        const labTests = [
+            { name: "Định lượng Glucose [máu]", group: "Sinh hóa", time: "120 phút / 45 phút", ref: "70 - 110 mg/dL", alert: "≤ 45 hoặc > 500 mg/dL" },
+            { name: "Định lượng Ure [máu]", group: "Sinh hóa", time: "120 phút / 45 phút", ref: "20 - 40 mg/dL", alert: "≥ 70 mg/dL" },
+            { name: "Định lượng Creatinin [máu]", group: "Sinh hóa", time: "120 phút / 45 phút", ref: "0.6 - 1.5 mg/dL", alert: "≥ 10 mg/dL" },
+            { name: "Bạch cầu (WBC)", group: "Huyết học", time: "90 phút / 30 phút", ref: "3.70 - 10.1 (10^3/µL)", alert: "> 50 hoặc < 1 (10^3/µL)" },
+            { name: "Hemoglobin (HGB)", group: "Huyết học", time: "90 phút / 30 phút", ref: "12.9 - 14.2 g/dL", alert: "≤ 7 hoặc > 20 g/dL" },
+            { name: "Thời gian prothrombin (PT)", group: "Đông máu", time: "60 phút / 30 phút", ref: "PT < 16s, INR < 1.2", alert: "PT > 180s, INR > 15.0" },
             { name: "HBsAg miễn dịch tự động", group: "Miễn dịch", time: "120 phút / 60 phút", ref: "< 0.03 IU/ml", alert: "" },
-            { name: "HCV Ab miễn dịch tự động", group: "Miễn dịch", time: "120 phút / 60 phút", ref: "< 1.0 COI", alert: "" },
-            { name: "Định lượng NT-ProBNP", group: "Miễn dịch", time: "120 phút / 60 phút", ref: "<50t: < 50 pg/ml ; 50-75t: 75-100 pg/ml; >75t: 250-300 pg/ml", alert: "" },
-            { name: "Định lượng Troponin I [máu]", group: "Miễn dịch", time: "120 phút / 60 phút", ref: "", alert: "> 50 pg/ml." },
-            { name: "Định lượng Ferritin [máu]", group: "Miễn dịch", time: "120 phút / 60 phút", ref: "15 - 320 ng/ml", alert: "" },
-            { name: "Định lượng Folate [máu]", group: "Miễn dịch", time: "120 phút / 60 phút", ref: "2.3 - 24.8 ng/mL", alert: "" },
-            { name: "Định lượng Vitamin B12 [máu]", group: "Miễn dịch", time: "120 phút / 60 phút", ref: "180 - 914 pg/mL", alert: "" },
-            { name: "Định lượng 25-OH Vitamin D (D3) [máu]", group: "Miễn dịch", time: "120 phút / 60 phút", ref: "30 - 100 ng/mL", alert: "" },
-            { name: "Định lượng sắt chưa bão hòa huyết thanh (UIBC)", group: "Miễn dịch", time: "120 phút / 60 phút", ref: "27.8 - 63.6 µmol/L", alert: "" },
-            { name: "Định lượng Pro-calcitonin [máu]", group: "Miễn dịch", time: "120 phút / 60 phút", ref: "< 0.5 ng/mL", alert: "" },
-            { name: "Định lượng Interleukin 6 [máu]", group: "Miễn dịch", time: "120 phút / 60 phút", ref: "< 6.4 pg/ml", alert: "" },
-            { name: "Định lượng Testosteron [máu]", group: "Miễn dịch", time: "120 phút / 60 phút", ref: "Nam: 168-746 ng/dl; Nữ: 10-90 ng/dl", alert: "" },
-            { name: "Định lượng Cortisol [máu]", group: "Miễn dịch", time: "120 phút / 60 phút", ref: "8h-12h: 138-690 nmol/L; 12h-20h: 138-410 nmol/L; 20h-8h: 0-276 nmol/L", alert: "" },
-            { name: "Định lượng Insulin [máu]", group: "Miễn dịch", time: "120 phút / 60 phút", ref: "1.9 - 23 µIU/mL", alert: "" },
-            { name: "Định lượng C-peptid [máu]", group: "Miễn dịch", time: "120 phút / 60 phút", ref: "1.8 - 4.2 ng/mL", alert: "" },
-            { name: "Định lượng Tg [máu]", group: "Miễn dịch", time: "120 phút / 60 phút", ref: "3.5 - 77 ng/mL", alert: "" },
-            { name: "Định lượng Digoxin [máu]", group: "Miễn dịch", time: "120 phút / 60 phút", ref: "1 - 2 ng/mL", alert: "" },
-            { name: "Định lượng Vancomycin", group: "Miễn dịch", time: "120 phút / 60 phút", ref: "20 - 40 µg/mL", alert: "" },
-            { name: "Định lượng EPO", group: "Miễn dịch", time: "120 phút / 60 phút", ref: "2.59 - 18.5 mIU/mL", alert: "" },
-            { name: "Toxocara Ab miễn dịch bán tự động", group: "Miễn dịch", time: "120 phút / 60 phút", ref: "< 1.1 S/CO", alert: "" },
-            { name: "Test Methamphetamine", group: "Miễn dịch", time: "60 phút / 30 phút", ref: "Âm tính", alert: "" },
-            { name: "Test Morphin/Heroin", group: "Miễn dịch", time: "60 phút / 30 phút", ref: "Âm tính", alert: "" },
-
-            // Nước tiểu & Dịch
-            { name: "Định lượng Creatinin [niệu]", group: "Nước tiểu & Dịch", time: "120 phút / 45 phút", ref: "Nam: 9.0-21.0 mmol/24h; Nữ: 7.0-14.0 mmol/24h", alert: "" },
-            { name: "Định lượng Glucose [niệu]", group: "Nước tiểu & Dịch", time: "120 phút / 45 phút", ref: "1.8 - 14.4 mg/dl", alert: "" },
-            { name: "Định lượng MAU [niệu]", group: "Nước tiểu & Dịch", time: "120 phút / 45 phút", ref: "< 25 mg/L", alert: "" },
-            { name: "Định lượng Protein niệu (Nước tiểu 24h)", group: "Nước tiểu & Dịch", time: "120 phút / 45 phút", ref: "< 300 mg/24h", alert: "" },
-            { name: "Đo hoạt độ Amylase [niệu]", group: "Nước tiểu & Dịch", time: "120 phút / 45 phút", ref: "< 450 U/L", alert: "" },
-            { name: "Điện giải đồ (Na, K, Cl) [niệu]", group: "Nước tiểu & Dịch", time: "120 phút / 45 phút", ref: "Na: 54-150 mEq/L; K: 20-80 mEq/L; Cl: 46-168 mEq/L", alert: "" },
-            { name: "Tổng phân tích nước tiểu bằng máy tự động", group: "Nước tiểu & Dịch", time: "120 phút / 30 phút", ref: "Tỷ trọng 1.005-1.030, pH 5.0-8.0...", alert: "" },
-            { name: "Xét nghiệm tế bào cặn nước tiểu", group: "Nước tiểu & Dịch", time: "120 phút / 45 phút", ref: "", alert: "" },
-            { name: "Định lượng Glucose (dịch não tủy)", group: "Nước tiểu & Dịch", time: "120 phút / 45 phút", ref: "39.6 - 70.3 mg/dl", alert: "" },
-            { name: "Định lượng Protein (dịch não tủy)", group: "Nước tiểu & Dịch", time: "120 phút / 45 phút", ref: "< 45 mg/dL", alert: "" },
-            { name: "Định lượng Glucose (dịch chọc dò)", group: "Nước tiểu & Dịch", time: "120 phút / 45 phút", ref: "", alert: "" },
-            { name: "Định lượng Protein (dịch chọc dò)", group: "Nước tiểu & Dịch", time: "120 phút / 45 phút", ref: "", alert: "" },
-            { name: "Đo hoạt độ LDH (dịch chọc dò)", group: "Nước tiểu & Dịch", time: "120 phút / 45 phút", ref: "", alert: "" },
-            { name: "Đo hoạt độ Amylase (dịch)", group: "Nước tiểu & Dịch", time: "120 phút / 45 phút", ref: "", alert: "" },
-            { name: "Định lượng Creatinin (dịch chọc dò)", group: "Nước tiểu & Dịch", time: "120 phút / 45 phút", ref: "", alert: "" },
-            { name: "Định lượng Cholesterol (dịch chọc dò)", group: "Nước tiểu & Dịch", time: "120 phút / 45 phút", ref: "", alert: "" },
-            { name: "Định lượng Ure (dịch chọc dò)", group: "Nước tiểu & Dịch", time: "120 phút / 45 phút", ref: "", alert: "" },
-            { name: "Định lượng Triglycerid (dịch chọc dò)", group: "Nước tiểu & Dịch", time: "120 phút / 45 phút", ref: "", alert: "" },
-            { name: "Phản ứng Rivalta (dịch)", group: "Nước tiểu & Dịch", time: "120 phút / 45 phút", ref: "", alert: "" },
-
-            // Huyết học
-            { name: "Bạch cầu (WBC)", group: "Huyết học", time: "90 phút / 30 phút", ref: "3.70 - 10.1 (10^3/µL)", alert: "> 50 hoặc < 1 (10^3/µL)." },
-            { name: "Hồng cầu (RBC)", group: "Huyết học", time: "90 phút / 30 phút", ref: "4.06 - 4.69 (10^6/µL)", alert: "" },
-            { name: "Hemoglobin (HGB)", group: "Huyết học", time: "90 phút / 30 phút", ref: "12.9 - 14.2 g/dL", alert: "≤ 7 hoặc > 20 g/dL." },
-            { name: "Hematocrit (HCT)", group: "Huyết học", time: "90 phút / 30 phút", ref: "37.7 - 53.7%", alert: "< 18% hoặc > 60%." },
-            { name: "Tiểu cầu (PLT)", group: "Huyết học", time: "90 phút / 30 phút", ref: "155 - 366 (10^3/µL)", alert: "< 30 hoặc > 1000 (10^3/µL)." },
-            { name: "NEU#", group: "Huyết học", time: "90 phút / 30 phút", ref: "1.63 - 6.96 (10^3/µL)", alert: "" },
-            { name: "Lympho#", group: "Huyết học", time: "90 phút / 30 phút", ref: "1.09 - 2.99 (10^3/µL)", alert: "" },
-            { name: "Mono#", group: "Huyết học", time: "90 phút / 30 phút", ref: "0.24 - 0.79 (10^3/µL)", alert: "" },
-            { name: "EOS#", group: "Huyết học", time: "90 phút / 30 phút", ref: "0.03 - 0.44 (10^3/µL)", alert: "" },
-            { name: "BASO#", group: "Huyết học", time: "90 phút / 30 phút", ref: "0.0 - 0.08 (10^3/µL)", alert: "" },
-            { name: "MCV", group: "Huyết học", time: "90 phút / 30 phút", ref: "81.1 - 96.0 fL", alert: "" },
-            { name: "MCH", group: "Huyết học", time: "90 phút / 30 phút", ref: "27.0 - 31.2 pg", alert: "" },
-            { name: "MCHC", group: "Huyết học", time: "90 phút / 30 phút", ref: "31.8 - 35.4 g/dl", alert: "" },
-            { name: "RDW", group: "Huyết học", time: "90 phút / 30 phút", ref: "11.5 - 14.5%", alert: "" },
-            { name: "MPV", group: "Huyết học", time: "90 phút / 30 phút", ref: "6.90 - 10.6 fL", alert: "" },
-            { name: "PDW", group: "Huyết học", time: "90 phút / 30 phút", ref: "7 - 17.0 fL", alert: "" },
-            { name: "PCT", group: "Huyết học", time: "90 phút / 30 phút", ref: "0.10 - 2.28%", alert: "" },
-            { name: "Tổng phân tích tế bào máu ngoại vi", group: "Huyết học", time: "90 phút / 30 phút", ref: "", alert: "" },
-            { name: "Số lượng và độ tập trung tiểu cầu (thủ công)", group: "Huyết học", time: "90 phút / 30 phút", ref: "", alert: "" },
-            { name: "Hồng cầu lưới (phương pháp thủ công)", group: "Huyết học", time: "90 phút / 30 phút", ref: "0.2 - 2.0%", alert: "" },
-            { name: "Thời gian máu đông (TS)", group: "Huyết học", time: "30 phút", ref: "4 - 10 phút", alert: "" },
-            { name: "Thời gian máu chảy (TC) phương pháp Duke", group: "Huyết học", time: "30 phút", ref: "2 - 4 phút", alert: "" },
-            { name: "Máu lắng (bằng máy tự động)", group: "Huyết học", time: "120 phút / 60 phút", ref: "Giờ 1: < 15mm; Giờ 2: < 20mm", alert: "" },
-            { name: "Xét nghiệm tế bào trong nước dịch", group: "Huyết học", time: "120 phút / 60 phút", ref: "", alert: "" },
-
-            // Đông máu
-            { name: "Thời gian prothrombin (PT)", group: "Đông máu", time: "60 phút / 30 phút", ref: "PT < 16 giây, INR < 1.2", alert: "PT > 180 giây, INR > 15.0." },
-            { name: "APTT", group: "Đông máu", time: "60 phút / 30 phút", ref: "< 36 giây", alert: "> 140 giây." },
-            { name: "Định lượng Fibrinogen", group: "Đông máu", time: "60 phút / 30 phút", ref: "200 - 400 mg/dl", alert: "< 60 hoặc > 1200 mg/dl." },
-            { name: "Định lượng D-Dimer", group: "Đông máu", time: "60 phút / 30 phút", ref: "0 - 0.55 mg/L", alert: "" },
-            { name: "Xét nghiệm Anti-Xa", group: "Đông máu", time: "60 phút / 30 phút", ref: "0-1.50 IU/ml (UFH); 0-1.75 IU/ml (LMWH)", alert: "" },
-
-            // Nhóm máu & An Toàn Truyền Máu
-            { name: "Định nhóm máu tại giường bệnh", group: "Truyền máu", time: "", ref: "", alert: "" },
-            { name: "Định nhóm máu hệ ABO bằng giấy", group: "Truyền máu", time: "120 phút", ref: "", alert: "" },
-            { name: "Định nhóm máu hệ ABO, Rh(D) bằng máy tự động", group: "Truyền máu", time: "120 phút / 60 phút", ref: "", alert: "" },
-            { name: "Phản ứng hòa hợp trong môi trường nước muối", group: "Truyền máu", time: "120 phút", ref: "", alert: "Không thuận hợp." },
-            { name: "Phản ứng hòa hợp có sử dụng kháng Globulin người", group: "Truyền máu", time: "120 phút", ref: "", alert: "Không thuận hợp." },
-            { name: "Nghiệm pháp Coombs trực tiếp", group: "Truyền máu", time: "120 phút / 60 phút", ref: "Âm tính", alert: "Dương tính." },
-            { name: "Nghiệm pháp Coombs gián tiếp", group: "Truyền máu", time: "120 phút / 60 phút", ref: "Âm tính", alert: "Dương tính." },
-
-            // Ký sinh trùng
-            { name: "Đơn bào đường ruột soi tươi", group: "Ký sinh trùng", time: "120 phút / 60 phút", ref: "", alert: "" },
-            { name: "Trứng giun, sán soi tươi", group: "Ký sinh trùng", time: "120 phút / 60 phút", ref: "", alert: "" },
-            { name: "Hồng cầu, Bạch cầu trong phân soi tươi", group: "Ký sinh trùng", time: "120 phút / 60 phút", ref: "", alert: "" },
-            { name: "Tìm ký sinh trùng sốt rét trong máu", group: "Ký sinh trùng", time: "120 phút / 60 phút", ref: "", alert: "" },
-
-            // Vi sinh
-            { name: "Vi khuẩn nuôi cấy và định danh hệ thống tự động", group: "Vi sinh", time: "3-5 ngày", ref: "Âm tính", alert: "" },
-            { name: "Vi khuẩn kháng thuốc hệ thống tự động", group: "Vi sinh", time: "3-5 ngày", ref: "Âm tính", alert: "" },
-            { name: "Neisseria gonorrhoeae nhuộm soi (Lậu cầu)", group: "Vi sinh", time: "120 phút / 60 phút", ref: "Âm tính", alert: "" },
-            { name: "Vi nấm nhuộm soi / Vi nấm soi tươi", group: "Vi sinh", time: "120 phút / 60 phút", ref: "Âm tính", alert: "" },
-            { name: "AFB trực tiếp nhuộm Ziehl-Neelsen", group: "Vi sinh", time: "24 giờ", ref: "Âm tính", alert: "" },
-
-            // Sinh học phân tử
-            { name: "HBV đo tải lượng hệ thống tự động", group: "Sinh học phân tử", time: "14 ngày", ref: "12 - 1.7x10^8", alert: "" },
-            { name: "HCV đo tải lượng hệ thống tự động", group: "Sinh học phân tử", time: "14 ngày", ref: "52 - 4.0x10^8", alert: "" }
+            { name: "Tổng phân tích nước tiểu", group: "Nước tiểu", time: "120 phút / 30 phút", ref: "", alert: "" },
+            // ... Có thể nạp thêm hàng trăm chỉ số ở đây
         ];
 
-        // ================= DỮ LIỆU BỆNH NHÂN =================
-        const patientData = {
-            "nuoc-tieu": {
-                title: "Hướng dẫn lấy mẫu: Nước Tiểu Thường",
-                sections: [
-                    { t: "1. Chuẩn bị", c: "Sử dụng ống nhựa trắng 7ml. <span class='highlight'>Rửa sạch tay và vùng kín</span> bằng nước sạch." },
-                    { t: "2. Cách lấy", c: "Bỏ đoạn nước tiểu đầu. <span class='highlight'>Hứng đoạn giữa dòng</span> vào ống nhựa. Đừng để ống chạm vào da." },
-                    { t: "3. Hoàn tất", c: "Đóng nắp chặt. Đặt ống lên giá tại phòng xét nghiệm theo chỉ dẫn." }
-                ]
-            },
-            "nuoc-tieu-24h": {
-                title: "Hướng dẫn lấy mẫu: Nước Tiểu 24H",
-                sections: [
-                    { t: "1. Bắt đầu (6 giờ sáng)", c: "<span class='highlight'>Tiểu hết bỏ đi</span>, không lấy vào bình." },
-                    { t: "2. Thu thập", c: "Mọi lần đi tiểu sau đó (kể cả khi tắm, đi ngoài) <span class='highlight'>phải hứng hết vào bình lớn</span>." },
-                    { t: "3. Kết thúc", c: "6 giờ sáng hôm sau tiểu lần cuối vào bình. Lắc đều, đo tổng thể tích, ghi lại và <span class='highlight'>chiết ra lọ nhựa nhỏ</span> mang đi gửi." }
-                ]
-            },
-            "dam": {
-                title: "Hướng dẫn lấy mẫu: Xét Nghiệm Đàm",
-                sections: [
-                    { t: "1. Chuẩn bị", c: "Nên lấy vào <span class='highlight'>sáng sớm khi mới ngủ dậy</span>. Súc miệng bằng nước muối sinh lý." },
-                    { t: "2. Cách lấy", c: "Hít sâu, nín thở rồi <span class='highlight'>ho thật mạnh</span> để khạc đờm từ phổi ra lọ. Đảm bảo lấy đàm đặc, đục/vàng/xanh, không lấy nước bọt." },
-                    { t: "3. Lưu ý", c: "Đóng nắp chặt. Mang nộp trong vòng 30 phút." }
-                ]
-            },
-            "phan": {
-                title: "Hướng dẫn lấy mẫu: Xét Nghiệm Phân",
-                sections: [
-                    { t: "1. Chuẩn bị", c: "Dùng bô sạch <span class='highlight'>tráng nước sôi để nguội</span>. Không dùng hóa chất tẩy rửa." },
-                    { t: "2. Cách lấy", c: "Dùng que múc phân cỡ <span class='highlight'>đầu ngón tay út (5 gram)</span>. Lấy chỗ có nhày, máu hoặc lợn cợn trắng." },
-                    { t: "3. Nộp mẫu", c: "Đóng nắp kỹ. Mang đến phòng xét nghiệm ngay trong vòng 30 phút." }
-                ]
-            }
+        const patientInstructions = {
+            "nuoc-tieu": { title: "Nước Tiểu Thường", icon: "🧪", content: `
+                <span class="step-title">1. Chuẩn bị:</span> Sử dụng ống nhựa trắng 7ml. <span class="highlight-red">Rửa sạch tay và vùng kín</span> bằng nước sạch.
+                <br><br><span class="step-title">2. Cách lấy:</span> Bỏ đoạn nước tiểu đầu. <span class="highlight-red">Hứng đoạn giữa dòng</span> vào ống nhựa.
+                <br><br><span class="step-title">3. Hoàn tất:</span> Đóng nắp chặt. Đặt lên giá tại phòng xét nghiệm.` },
+            "nuoc-tieu-24h": { title: "Nước Tiểu 24H", icon: "🏺", content: `
+                <span class="step-title">1. Bắt đầu (6 giờ sáng):</span> <span class="highlight-red">Tiểu hết bỏ đi</span>, không lấy vào bình.
+                <br><br><span class="step-title">2. Thu thập:</span> Mọi lần đi tiểu sau đó <span class="highlight-red">phải hứng hết vào bình</span>.
+                <br><br><span class="step-title">3. Kết thúc:</span> 6 giờ sáng hôm sau tiểu lần cuối vào bình. Lắc đều, đo thể tích.` },
+            "dam": { title: "Xét Nghiệm Đàm", icon: "🗣️", content: `
+                <span class="step-title">1. Chuẩn bị:</span> Lấy vào sáng sớm. Súc miệng bằng nước muối sinh lý.
+                <br><br><span class="step-title">2. Cách lấy:</span> Hít sâu, nín thở rồi <span class="highlight-red">ho thật mạnh</span> để khạc đờm từ phổi vào lọ.
+                <br><br><span class="step-title">3. Lưu ý:</span> Không lấy nước bọt. Mang nộp trong vòng 30 phút.` },
+            "phan": { title: "Xét Nghiệm Phân", icon: "💩", content: `
+                <span class="step-title">1. Chuẩn bị:</span> Dùng bô sạch tráng nước sôi. Không dùng hóa chất tẩy rửa bô.
+                <br><br><span class="step-title">2. Cách lấy:</span> Lấy chỗ có nhầy, máu hoặc lợn cợn trắng. Lượng lấy bằng <span class="highlight-red">đầu ngón tay út</span>.` }
         };
 
-        // ================= DỮ LIỆU NHÂN VIÊN Y TẾ =================
-        const staffData = {
-            "thu-tu-ong": {
-                title: "Thứ Tự Sử Dụng Ống",
-                icon: "🧪",
-                render: () => `
-                    <h2 style="color:var(--primary-blue); border-bottom: 3px solid #e3f2fd; padding-bottom: 15px; margin-top:0;">Thứ Tự Bơm Máu Chuẩn</h2>
-                    <table>
-                        <tr><th>Thứ tự</th><th>Loại ống / Màu nắp</th><th>Xét nghiệm tương ứng</th><th>Thể tích cần thiết</th><th>Số lần lắc trộn</th></tr>
-                        <tr><td>1</td><td>Chai cấy máu</td><td>Vi sinh (Cấy máu)</td><td>NL: 8-10ml; Trẻ em: 3-5ml</td><td>3 - 5 lần</td></tr>
-                        <tr><td>2</td><td>Sodium Citrate 3.8% <br><span class="highlight">Xanh dương</span></td><td>Đông máu</td><td>Đúng 2 ml (bắt buộc)</td><td>5 - 8 lần</td></tr>
-                        <tr><td>3</td><td>Sodium Citrate 1:4 <br><span style="color:gray; font-weight:bold;">Đen dài</span></td><td>Máu lắng (ESR)</td><td>1.6 ml</td><td>5 - 8 lần</td></tr>
-                        <tr><td>4</td><td>Serum <br><span class="highlight" style="background:#ffcdd2;">Đỏ</span></td><td>Vi sinh, Miễn dịch, Hóa sinh</td><td>2 - 3 ml</td><td>3 - 5 lần</td></tr>
-                        <tr><td>5</td><td>Heparin <br><span style="color:gray; font-weight:bold;">Đen</span></td><td>Hóa sinh, Miễn dịch</td><td>2 ml</td><td>5 - 8 lần</td></tr>
-                        <tr><td>6</td><td>EDTA <br><span style="color:purple; font-weight:bold;">Tím/Xanh dương</span></td><td>Công thức máu, HbA1c</td><td>2 ml</td><td>5 - 8 lần</td></tr>
-                    </table>
-                `
-            },
-            "danh-muc-xn": {
-                title: "Từ Điển Xét Nghiệm",
-                icon: "📖",
-                render: () => {
-                    let rowsHtml = labTestsData.map(test => `
-                        <tr>
-                            <td style="font-weight:bold;">${test.name}</td>
-                            <td>${test.group}</td>
-                            <td>${test.time}</td>
-                            <td>${test.ref}</td>
-                            <td style="color:${test.alert !== '' ? 'var(--text-red)' : 'inherit'}; font-weight:${test.alert !== '' ? 'bold' : 'normal'}">${test.alert}</td>
-                        </tr>
-                    `).join('');
+        const pathologies = {
+            "p1": { title: "Tim mạch & Đột quỵ", icon: "❤️", tests: "NT-ProBNP, Troponin I, CK-MB, AST, LDH, CRP, Khí máu, Điện giải, Bộ mỡ máu, PT, APTT, D-Dimer.", meaning: "Hỗ trợ chẩn đoán cấp cứu nhồi máu cơ tim, suy tim, đột quỵ. Tầm soát mỡ máu và theo dõi huyết khối." },
+            "p2": { title: "Ung bướu (Ung thư)", icon: "🎗️", tests: "AFP (Gan), CEA (Tiêu hóa), PSA (Tiền liệt tuyến), CA 15-3 (Vú), Tg (Giáp), Beta 2 Microglobulin, Tế bào học dịch.", meaning: "Tầm soát sớm và theo dõi đáp ứng điều trị các loại ung thư phổ biến. Tìm tế bào ác tính trong dịch cơ thể." },
+            "p3": { title: "Hô hấp (Phổi, Lao)", icon: "🫁", tests: "Khí máu, CRP, Pro-calcitonin, Interleukin 6, WBC, Máu lắng, Nhuộm AFB tìm Lao, Cấy vi khuẩn.", meaning: "Đánh giá mức độ suy hô hấp. Tìm nguyên nhân viêm phổi cấp và chẩn đoán đặc thù bệnh lao phổi." },
+            "p4": { title: "Chuyển hóa & Tiểu đường", icon: "🩸", tests: "Glucose, HbA1C, Insulin, C-peptid, Acid Uric, Ceton, Ure, Creatinin, MAU niệu, Protein niệu 24h.", meaning: "Chẩn đoán, theo dõi kiểm soát đường huyết. Phát hiện sớm biến chứng thận và theo dõi bệnh Gout." },
+            "p5": { title: "Gan mật & Tiêu hóa", icon: "🧪", tests: "AST, ALT, GGT, Bilirubin, Albumin, Amylase, Lipase, HBsAg, HCV Ab, Tải lượng HBV/HCV, Soi phân.", meaning: "Đánh giá tổn thương gan, viêm tụy cấp. Tầm soát viêm gan siêu vi B, C và xuất huyết tiêu hóa." },
+            "p6": { title: "Thận - Tiết niệu", icon: "💧", tests: "Ure, Creatinin, Điện giải, Calci, Phospho, Protein niệu 24h, Tế bào cặn nước tiểu, Cấy vi khuẩn.", meaning: "Đánh giá chức năng lọc của thận, rối loạn điện giải. Chẩn đoán nhiễm trùng đường tiết niệu." },
+            "p7": { title: "Truyền nhiễm & Ký sinh trùng", icon: "🦟", tests: "Sốt xuất huyết (Dengue), HIV, Sốt rét, Giang mai, Salmonella, Giun đũa chó mèo (Toxocara).", meaning: "Chẩn đoán các bệnh dịch nhiệt đới nguy hiểm và gánh nặng bệnh lý giun sán lây nhiễm." },
+            "p8": { title: "Chấn thương & Cấp cứu", icon: "🚑", tests: "Khí máu, Lactat, Ethanol (Cồn), Test ma túy, Nhóm máu, Phản ứng hòa hợp.", meaning: "Hồi sức tích cực đa chấn thương. Tầm soát nguyên nhân tai nạn do rượu/ma túy và an toàn truyền máu." },
+            "p9": { title: "Tâm thần & Thần kinh", icon: "🧠", tests: "Dịch não tủy (Glucose, Protein, TB, Cấy), Ethanol, Amoniac (NH3), AST, ALT, GGT.", meaning: "Tìm nguyên nhân viêm màng não. Đánh giá tổn thương gan và thần kinh do lạm dụng rượu/ma túy." },
+            "p10": { title: "Cơ xương khớp", icon: "🦴", tests: "Acid Uric, Calci, Phospho, Vitamin D3, Yếu tố dạng thấp (RF), ASO, CRP, Máu lắng (ESR).", meaning: "Tầm soát bệnh tự miễn, đánh giá loãng xương người già và tình trạng viêm nhiễm tại khớp." },
+            "p11": { title: "Dinh dưỡng & Thiếu máu", icon: "🍎", tests: "Sắt huyết thanh, Ferritin, Folate, Vitamin B12, UIBC, Phết máu ngoại biên, Hồng cầu lưới.", meaning: "Chẩn đoán nguyên nhân thiếu máu. Tầm soát vi chất và các bệnh lây truyền từ mẹ sang con." },
+            "p12": { title: "Tuyến giáp & Nội tiết", icon: "🦋", tests: "FT3, FT4, TSH, Anti-Tg, TRAb, Testosteron, Cortisol.", meaning: "Chẩn đoán rối loạn chức năng tuyến giáp, tuyến thượng thận và suy giảm hormone sinh dục." }
+        };
 
-                    return `
-                        <h2 style="color:var(--primary-blue); margin-top:0;">Tra Cứu Danh Mục Xét Nghiệm</h2>
-                        <input type="text" id="search-xn" class="search-bar" placeholder="🔍 Nhập tên xét nghiệm hoặc phân loại (VD: Glucose, Huyết học...)" onkeyup="filterTable()">
-                        <table id="table-xn">
-                            <tr class="header">
-                                <th>Tên Xét Nghiệm</th>
-                                <th>Phân Loại</th>
-                                <th>Thời gian trả (TQ/Khẩn)</th>
-                                <th>Khoảng tham chiếu sinh học</th>
-                                <th>Cảnh báo lâm sàng</th>
-                            </tr>
-                            ${rowsHtml}
-                        </table>
-                    `;
-                }
-            },
-            "thu-thap-mau": {
-                title: "Quy Chuẩn Thu Thập",
-                icon: "🩸",
-                render: () => `
-                    <h2 style="color:var(--primary-blue); border-bottom: 3px solid #e3f2fd; padding-bottom: 15px; margin-top:0;">Hướng Dẫn Thu Thập Bệnh Phẩm</h2>
-                    <table>
-                        <tr><th>Loại bệnh phẩm</th><th>Dụng cụ chứa</th><th>Yêu cầu / Cách lấy</th><th>Thể tích</th><th>Thời gian vận chuyển</th><th>Tiêu chuẩn từ chối</th></tr>
-                        <tr><td>Máu tĩnh mạch</td><td>Ống serum (đỏ) hoặc chống đông</td><td>Nhịn đói 8h (sinh hóa). Lắc ống 5-8 lần. Không bọt khí.</td><td>Tùy ống</td><td>Càng sớm càng tốt</td><td>Tán huyết; Cục máu đông; Sai thể tích</td></tr>
-                        <tr><td>Khí máu động mạch</td><td>Bơm tiêm 1ml tráng Heparin</td><td>Không có bọt khí, trộn đều liên tục.</td><td>0.5 - 1 ml</td><td>Không quá 30 phút</td><td></td></tr>
-                        <tr><td>Máu (Cấy máu)</td><td>Chai cấy máu</td><td>Lấy trước khi sốt cao. Sát khuẩn da kỹ. Lắc chai 3-5 lần.</td><td>NL: 8-10ml</td><td>Tối đa 30p</td><td>Không đủ thể tích; Sai bảo quản</td></tr>
-                        <tr><td>Nước tiểu (Cấy)</td><td>Lọ vô khuẩn (đỏ)</td><td>Lấy giữa dòng hoặc qua catheter. Vệ sinh kỹ.</td><td>~ 10 ml</td><td>Gửi ngay (30 phút)</td><td>Để quá 2 tiếng; Mọc >3 loại VK</td></tr>
-                        <tr><td>Dịch (não tủy, màng phổi...)</td><td>Lọ vô khuẩn / Ống sạch</td><td>BS chọc dò vô khuẩn. Lấy trước khi dùng KS.</td><td>3 - 10 ml</td><td>Gửi ngay trong 30 phút</td><td>Dịch bị đông; Lấy từ ống dẫn lưu</td></tr>
-                        <tr><td>Mủ</td><td>Tăm bông vô khuẩn</td><td>Rửa sạch vết thương NMSL. Lấy mủ ở đáy tổn thương.</td><td>1.5-2ml</td><td>Gửi ngay trong 30 phút</td><td>Tăm bông bị khô</td></tr>
-                        <tr><td>Ngoáy họng</td><td>Que tăm bông vô khuẩn</td><td>Quệt vào amidan/giả mạc, tránh chạm răng/lưỡi.</td><td>2 que</td><td>Gửi ngay trong 30 phút</td><td>Tăm bông bị khô</td></tr>
-                        <tr><td>Phân</td><td>Lọ vô khuẩn</td><td>Lấy vùng nhầy/máu. Lấy sớm trước dùng KS.</td><td>~ 5 gram</td><td>Gửi ngay trong 30 phút</td><td></td></tr>
-                        <tr><td>Đàm</td><td>Lọ nhựa sạch</td><td>Súc miệng NMSL. Lấy đàm đặc, đục/vàng/xanh.</td><td>Đủ XN</td><td>Gửi ngay trong 30 phút</td><td>Dịch nhớt trong (nước bọt)</td></tr>
-                    </table>
-                `
-            },
-            "xu-ly-mau": {
-                title: "Tiêu Chuẩn Nhận/Từ Chối",
-                icon: "📋",
-                render: () => `
-                    <h2 style="color:var(--primary-blue); border-bottom: 3px solid #e3f2fd; padding-bottom: 15px; margin-top:0;">Tiêu Chuẩn Chung & Cách Xử Lý Mẫu <span class="highlight-no">KHÔNG</span> Đạt</h2>
-                    <div class="step-card">
-                        <div class="step-title">✅ 1. Tiêu chuẩn chấp nhận chung</div>
-                        <div class="step-content">
-                            - Phiếu chỉ định đầy đủ thông tin (Họ tên, năm sinh, địa chỉ, chẩn đoán, mã code, chỉ định XN, BS điều trị).<br>
-                            - Thông tin SID, tên, năm sinh trên phiếu và ống mẫu <span class="highlight">phải khớp nhau tuyệt đối</span>.<br>
-                            - Đúng loại mẫu, đủ lượng, đúng dụng cụ, không vi phạm quy định bảo quản/vận chuyển.
-                        </div>
-                    </div>
-                    <div class="step-card">
-                        <div class="step-title">❌ 2. Mẫu <span class="highlight-no">KHÔNG</span> đạt (Thông thường)</div>
-                        <div class="step-content">
-                            - Khoa Xét Nghiệm <b>từ chối nhận mẫu</b>.<br>
-                            - Thông báo cho bộ phận lấy mẫu lý do từ chối và hướng xử lý (lấy lại mẫu, bổ sung thông tin...).<br>
-                            - Ghi nhận sự việc vào "Sổ từ chối mẫu".
-                        </div>
-                    </div>
-                    <div class="step-card">
-                        <div class="step-title">⚠️ 3. Mẫu <span class="highlight-no">KHÔNG</span> đạt nhưng không thể lấy lại (DNT, Dịch khớp...)</div>
-                        <div class="step-content">
-                            - Khách hàng/Bác sĩ phải <span class="highlight">ghi rõ lý do, yêu cầu và ký xác nhận</span> vào phiếu chỉ định.<br>
-                            - KXN tiến hành xét nghiệm và ghi chú tình trạng mẫu lên phiếu kết quả.<br>
-                            - Nếu thiếu phiếu chỉ định đúng chuẩn: KXN vẫn làm XN nhưng không trả kết quả cho đến khi nhận đủ phiếu chuẩn.
-                        </div>
-                    </div>
-                    <div class="step-card">
-                        <div class="step-title">🚑 4. Mẫu Cấp cứu/Khẩn (Thiếu phiếu chuẩn)</div>
-                        <div class="step-content">
-                            - Nếu mẫu đạt nhưng thiếu phiếu yêu cầu chuẩn: Vẫn tiến hành làm xét nghiệm.<br>
-                            - Trả kết quả qua điện thoại nếu rơi vào ngưỡng cảnh báo lâm sàng.<br>
-                            - Kết quả chính thức bản giấy chỉ được trả khi nhận được phiếu chỉ định chuẩn.
-                        </div>
-                    </div>
-                `
-            }
+        const staffMenu = {
+            "order": { title: "Thứ tự sử dụng ống", icon: "🧪", content: `
+                <table>
+                    <tr><th>STT</th><th>Màu nắp</th><th>Xét nghiệm</th><th>Lưu ý</th></tr>
+                    <tr><td>1</td><td>Cấy máu</td><td>Vi sinh</td><td>Sát khuẩn kỹ</td></tr>
+                    <tr><td>2</td><td>Xanh dương</td><td>Đông máu</td><td>Lắc 5-8 lần</td></tr>
+                    <tr><td>3</td><td>Đỏ</td><td>Sinh hóa, Miễn dịch</td><td>Lắc 3-5 lần</td></tr>
+                    <tr><td>4</td><td>Đen</td><td>Hóa sinh, Miễn dịch</td><td>Lắc 5-8 lần</td></tr>
+                    <tr><td>5</td><td>Tím</td><td>Huyết học, HbA1c</td><td>Lắc 5-8 lần</td></tr>
+                </table>` },
+            "collect": { title: "Hướng dẫn thu thập", icon: "💉", content: `
+                <table>
+                    <tr><th>Loại</th><th>Dụng cụ</th><th>Cách lấy</th><th>Vận chuyển</th></tr>
+                    <tr><td>Máu</td><td>Ống chuẩn</td><td>Đúng thể tích</td><td>Gửi ngay</td></tr>
+                    <tr><td>Dịch</td><td>Lọ vô khuẩn</td><td>Vô khuẩn tuyệt đối</td><td>Dưới 30 phút</td></tr>
+                </table>` },
+            "dictionary": { title: "Tra Cứu Danh Mục Xét Nghiệm", icon: "🔍", isDictionary: true },
+            "policy": { title: "Tiêu chuẩn Nhận/Từ chối", icon: "⚠️", content: `
+                <div class="pathology-card">
+                    <div class="pathology-title">1. Mẫu <span class="no-highlight">KHÔNG</span> đạt chuẩn</div>
+                    Khoa Xét nghiệm từ chối nhận mẫu. Thông báo ngay cho bộ phận lấy mẫu.
+                </div>
+                <div class="pathology-card">
+                    <div class="pathology-title">2. Mẫu <span class="no-highlight">KHÔNG</span> đạt nhưng không thể lấy lại</div>
+                    Bác sĩ phải ký xác nhận đồng ý làm trên mẫu <span class="no-highlight">KHÔNG</span> đạt.
+                </div>` }
         };
 
         // ================= LOGIC ĐIỀU KHIỂN =================
 
-        // 1. Chuyển đổi Tab Lớn
-        function switchMainTab(tab) {
-            document.querySelectorAll('.main-tab-btn').forEach(b => b.classList.remove('active'));
-            document.querySelectorAll('.wrapper').forEach(w => w.classList.remove('active'));
-            
+        function switchView(view) {
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.container').forEach(c => c.classList.remove('active'));
             event.target.classList.add('active');
-            document.getElementById(tab + '-view').classList.add('active');
+            document.getElementById(view + '-view').classList.add('active');
+
+            if(view === 'patient') switchPatientSubTab('take-sample');
+            else renderStaffSide();
         }
 
-        // 2. Khởi tạo menu Bệnh Nhân
-        function initPatientNav() {
-            const nav = document.getElementById('patient-nav');
-            const content = document.getElementById('patient-content');
-            
-            Object.keys(patientData).forEach((key, index) => {
-                const item = patientData[key];
-                const btn = document.createElement('button');
-                btn.className = `nav-button ${index === 0 ? 'active' : ''}`;
-                btn.innerHTML = `<span>📝 ${item.title.replace('Hướng dẫn lấy mẫu: ', '')}</span>`;
-                
-                btn.onclick = () => {
-                    document.querySelectorAll('#patient-nav .nav-button').forEach(b => b.classList.remove('active'));
-                    btn.classList.add('active');
-                    
-                    let html = `<h2 style="color:var(--primary-blue); border-bottom: 3px solid #e3f2fd; padding-bottom: 15px; margin-top:0;">${item.title}</h2>`;
-                    item.sections.forEach(s => {
-                        html += `<div class="step-card">
-                                    <div class="step-title">${s.t}</div>
-                                    <div class="step-content">${s.c}</div>
-                                 </div>`;
-                    });
-                    content.innerHTML = html;
-                };
-                nav.appendChild(btn);
-            });
-            nav.querySelector('.nav-button').click();
-        }
+        // --- DÀNH CHO BỆNH NHÂN ---
+        function switchPatientSubTab(tab) {
+            const container = document.getElementById('patient-sub-content');
+            document.getElementById('sub-take-sample-btn').classList.toggle('active', tab === 'take-sample');
+            document.getElementById('sub-reference-btn').classList.toggle('active', tab === 'reference');
 
-        // 3. Khởi tạo menu Nhân Viên Y Tế
-        function initStaffNav() {
-            const nav = document.getElementById('staff-nav');
-            const content = document.getElementById('staff-content');
-            
-            Object.keys(staffData).forEach((key, index) => {
-                const item = staffData[key];
-                const btn = document.createElement('button');
-                btn.className = `nav-button ${index === 0 ? 'active' : ''}`;
-                btn.innerHTML = `<span>${item.icon} ${item.title}</span>`;
-                
-                btn.onclick = () => {
-                    document.querySelectorAll('#staff-nav .nav-button').forEach(b => b.classList.remove('active'));
-                    btn.classList.add('active');
-                    content.innerHTML = item.render();
-                };
-                nav.appendChild(btn);
-            });
-            nav.querySelector('.nav-button').click();
-        }
-
-        // 4. Tính năng Tìm kiếm (Search) trong bảng Xét nghiệm
-        function filterTable() {
-            let input = document.getElementById("search-xn");
-            if(!input) return;
-            let filter = input.value.toUpperCase();
-            let table = document.getElementById("table-xn");
-            let tr = table.getElementsByTagName("tr");
-
-            for (let i = 1; i < tr.length; i++) { 
-                let tdName = tr[i].getElementsByTagName("td")[0];
-                let tdGroup = tr[i].getElementsByTagName("td")[1];
-                if (tdName || tdGroup) {
-                    let txtValue = (tdName.textContent || tdName.innerText) + " " + (tdGroup.textContent || tdGroup.innerText);
-                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                        tr[i].style.display = "";
-                    } else {
-                        tr[i].style.display = "none";
-                    }
-                }       
+            if(tab === 'take-sample') {
+                container.innerHTML = `<div class="sidebar" id="p-sub-sidebar"></div><div class="content-area" id="p-sub-display"></div>`;
+                renderPatientSubMenu(patientInstructions, 'p-sub-sidebar', 'p-sub-display');
+            } else {
+                container.innerHTML = `<div class="sidebar" id="p-ref-sidebar"></div><div class="content-area" id="p-ref-display"></div>`;
+                renderPatientSubMenu(pathologies, 'p-ref-sidebar', 'p-ref-display', true);
             }
         }
 
-        // Khởi chạy App
-        initPatientNav();
-        initStaffNav();
+        function renderPatientSubMenu(data, sidebarId, displayId, isPathology = false) {
+            const sidebar = document.getElementById(sidebarId);
+            sidebar.innerHTML = '';
+            Object.keys(data).forEach((key, idx) => {
+                const item = data[key];
+                const div = document.createElement('div');
+                div.className = `nav-item ${idx === 0 ? 'active' : ''}`;
+                div.innerHTML = `<span>${item.icon}</span> ${item.title}`;
+                div.onclick = () => {
+                    sidebar.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+                    div.classList.add('active');
+                    showPatientDetail(key, data, displayId, isPathology);
+                };
+                sidebar.appendChild(div);
+            });
+            showPatientDetail(Object.keys(data)[0], data, displayId, isPathology);
+        }
+
+        function showPatientDetail(key, data, displayId, isPathology) {
+            const display = document.getElementById(displayId);
+            const item = data[key];
+            if(isPathology) {
+                display.innerHTML = `
+                    <h2 style="color:var(--primary); margin-top:0">${item.title}</h2>
+                    <div class="pathology-card">
+                        <div class="pathology-title">🧬 Các xét nghiệm hỗ trợ:</div>
+                        <p style="font-size:1.2rem; font-family:'Times New Roman'">${item.tests}</p>
+                    </div>
+                    <div class="pathology-card" style="border-left:5px solid var(--secondary)">
+                        <div class="pathology-title">💡 Vai trò & Ý nghĩa lâm sàng:</div>
+                        <p style="font-size:1.15rem">${item.meaning}</p>
+                    </div>
+                `;
+            } else {
+                display.innerHTML = `<h2 style="color:var(--primary); margin-top:0">${item.title}</h2><div style="font-size:1.2rem">${item.content}</div>`;
+            }
+        }
+
+        // --- DÀNH CHO NHÂN VIÊN ---
+        function renderStaffSide() {
+            const sidebar = document.getElementById('staff-sidebar');
+            sidebar.innerHTML = '';
+            Object.keys(staffMenu).forEach((key, idx) => {
+                const item = staffMenu[key];
+                const div = document.createElement('div');
+                div.className = `nav-item ${idx === 0 ? 'active' : ''}`;
+                div.innerHTML = `<span>${item.icon}</span> ${item.title}`;
+                div.onclick = () => {
+                    sidebar.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+                    div.classList.add('active');
+                    showStaffDetail(key);
+                };
+                sidebar.appendChild(div);
+            });
+            showStaffDetail(Object.keys(staffMenu)[0]);
+        }
+
+        function showStaffDetail(key) {
+            const display = document.getElementById('staff-content');
+            const item = staffMenu[key];
+            if(item.isDictionary) {
+                display.innerHTML = `
+                    <h2 style="color:var(--primary); margin-top:0">${item.title}</h2>
+                    <input type="text" class="search-box" placeholder="Nhập tên xét nghiệm cần tìm..." onkeyup="searchLab(this.value)">
+                    <div id="dict-results"></div>
+                `;
+                searchLab('');
+            } else {
+                display.innerHTML = `<h2 style="color:var(--primary); margin-top:0">${item.title}</h2>${item.content}`;
+            }
+        }
+
+        function searchLab(val) {
+            const results = document.getElementById('dict-results');
+            const filtered = labTests.filter(t => t.name.toLowerCase().includes(val.toLowerCase()));
+            let html = `<table><tr><th>Tên xét nghiệm</th><th>Thời gian</th><th>Tham chiếu</th><th>Cảnh báo</th></tr>`;
+            filtered.forEach(t => {
+                html += `<tr>
+                    <td style="font-weight:bold">${t.name}</td>
+                    <td>${t.time}</td>
+                    <td>${t.ref}</td>
+                    <td style="color:red; font-weight:bold">${t.alert}</td>
+                </tr>`;
+            });
+            html += `</table>`;
+            results.innerHTML = html;
+        }
+
+        // Khởi tạo
+        window.onload = () => {
+            switchPatientSubTab('take-sample');
+        };
     </script>
 </body>
 </html>
